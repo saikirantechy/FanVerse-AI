@@ -6,6 +6,7 @@ import MegaLeaderboard from '../../components/MegaLeaderboard';
 import MatchArchive from '../../components/MatchArchive';
 import AIReplayCommentary from '../../components/AIReplayCommentary';
 import ReplayShareCard from '../../components/ReplayShareCard';
+import MatchRecapStory from '../../components/MatchRecapStory';
 import BackgroundParticles from '../../components/BackgroundParticles';
 import { Trophy, Star, Shield, Zap, History, LayoutGrid } from 'lucide-react';
 
@@ -94,6 +95,7 @@ export default function ArenaPage() {
               <AIReplayCommentary />
             </div>
             <ReplayShareCard />
+            <MatchRecapStory />
           </div>
         )}
       </div>
