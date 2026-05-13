@@ -35,6 +35,7 @@ import OddsTracker from '../components/OddsTracker';
 import InteractionHeatmap from '../components/InteractionHeatmap';
 import GlobalBroadcast from '../components/GlobalBroadcast';
 import RecommendedContent from '../components/RecommendedContent';
+import BehaviorFeedback from '../components/BehaviorFeedback';
 import ViralTimeline from '../components/ViralTimeline';
 import TeamDynamics from '../components/TeamDynamics';
 import PressureGauge from '../components/PressureGauge';
@@ -276,6 +277,7 @@ export default function Home() {
           <div onClick={() => setIsPredRankOpen(true)} className="cursor-pointer">
             <AccuracyTracker />
           </div>
+          <BehaviorFeedback />
           <ClanSystem />
           <InteractionHeatmap />
         </div>
