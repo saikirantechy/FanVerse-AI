@@ -1,16 +1,20 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Brain, Timer, CheckCircle, XCircle } from 'lucide-react';
+import { Brain, Timer, CheckCircle, XCircle, TrendingUp } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { QuizDifficultyEngine } from '../utils/QuizDifficultyEngine';
 
 export default function QuizArena({ onComplete }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15);
   const [showResult, setShowResult] = useState(false);
+  const [difficulty, setDifficulty] = useState({ level: 1, label: 'Rookie', xpMultiplier: 1.2 });
 
   useEffect(() => {
     if (showResult && score > 0) {
+      const nextDiff = QuizDifficultyEngine.calculateNextDifficulty(difficulty.level, (score/500)*100, 3);
+      setDifficulty(nextDiff);
       confetti({
         particleCount: 150,
         spread: 70,
