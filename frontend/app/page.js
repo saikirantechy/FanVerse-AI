@@ -33,6 +33,8 @@ import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import InteractionHeatmap from '../components/InteractionHeatmap';
+import TeamDynamics from '../components/TeamDynamics';
+import PressureGauge from '../components/PressureGauge';
 import FieldHeatmap from '../components/FieldHeatmap';
 import MatchScript from '../components/MatchScript';
 import WeatherWidget from '../components/WeatherWidget';
@@ -206,10 +208,11 @@ export default function Home() {
             <AICaptainConsensus insight={insight} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <OddsTracker momentum={momentum} />
             <SquadComparison />
             <FieldHeatmap />
+            <TeamDynamics />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -272,6 +275,7 @@ export default function Home() {
           <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
+          <PressureGauge value={momentum < 0 ? 85 : 45} />
           <ConfidenceGauge />
           <div onClick={() => setIsPredRankOpen(true)} className="cursor-pointer">
             <AccuracyTracker />
