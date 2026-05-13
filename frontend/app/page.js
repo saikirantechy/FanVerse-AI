@@ -27,10 +27,13 @@ import CrowdPowerMeter from '../components/CrowdPowerMeter';
 import BroadcastTicker from '../components/BroadcastTicker';
 import AgentActivityMonitor from '../components/AgentActivityMonitor';
 import FanActivityFeed from '../components/FanActivityFeed';
+import AccuracyTracker from '../components/AccuracyTracker';
 import ClanMap from '../components/ClanMap';
 import MatchReportModal from '../components/MatchReportModal';
+import MatchStatsModal from '../components/MatchStatsModal';
 import ConfettiEffect from '../components/ConfettiEffect';
 import XPPulse from '../components/XPPulse';
+import BackgroundParticles from '../components/BackgroundParticles';
 import ChatFAB from '../components/ChatFAB';
 import { useMatch } from '../hooks/useMatch';
 import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
@@ -42,6 +45,7 @@ export default function Home() {
   const [isLivePlay, setIsLivePlay] = useState(true);
   const [newAchievement, setNewAchievement] = useState(null);
   const [isReportOpen, setIsReportOpen] = useState(false);
+  const [isStatsOpen, setIsStatsOpen] = useState(false);
 
   // Monitor for match completion
   useEffect(() => {
@@ -77,6 +81,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pt-24 pb-24 px-6 relative bg-[#050505] overflow-hidden">
+      <BackgroundParticles />
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
@@ -101,6 +106,11 @@ export default function Home() {
         onClose={() => setIsReportOpen(false)} 
         report={liveData?.match_report}
         fanRecap={liveData?.fan_recap}
+      />
+      <MatchStatsModal 
+        isOpen={isStatsOpen} 
+        onClose={() => setIsStatsOpen(false)} 
+        matchData={matchData}
       />
 
       <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
@@ -159,7 +169,9 @@ export default function Home() {
             </div>
           </div>
 
-          <LiveScoreCard matchData={matchData} />
+          <div onClick={() => setIsStatsOpen(true)} className="cursor-pointer">
+            <LiveScoreCard matchData={matchData} />
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <MomentumMeter value={momentum} />
@@ -225,6 +237,7 @@ export default function Home() {
           <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
+          <AccuracyTracker />
           <ClanSystem />
           <ClanMap />
         </div>
