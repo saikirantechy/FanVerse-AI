@@ -6,6 +6,7 @@ import BadgeGallery from '../../components/BadgeGallery';
 import AIAvatarGenerator from '../../components/AIAvatarGenerator';
 import ShareCardGenerator from '../../components/ShareCardGenerator';
 import FanPostGenerator from '../../components/FanPostGenerator';
+import ReputationLeaderboard from '../../components/ReputationLeaderboard';
 import EditProfileModal from '../../components/EditProfileModal';
 import BackgroundParticles from '../../components/BackgroundParticles';
 
@@ -37,6 +38,7 @@ export default function ProfilePage() {
           </div>
           <div className="space-y-12">
             <FanPostGenerator />
+            <ReputationLeaderboard />
             <div className="glass-card p-8 border-white/5">
               <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-6 text-center">Prediction DNA</h3>
               <div className="space-y-6">
