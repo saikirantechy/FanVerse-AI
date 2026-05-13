@@ -1,109 +1,244 @@
-# FanVerse AI
+# 🚀 FanVerse AI
 
-# FanVerse AI
+> AI-powered realtime second-screen sports engagement platform built for Google Cloud — Build with AI (Agentic Premier League).
 
-### AI-Powered Second Screen Experience for Live Sports
+---
 
-### AI-Powered Second Screen Experience for Live Sports
+# 🏆 Problem Statement
 
-"FanVerse AI transforms passive sports viewers into active participants using real-time multi-agent AI orchestration powered by Gemini and Google Cloud."
-"FanVerse AI transforms passive sports viewers into active participants using real-time multi-agent AI orchestration powered by Gemini and Google Cloud."
+Modern sports viewing is mostly passive.
 
-## Project Overviewnd Screen Experience for Live Sports
+Fans watch live matches but lack:
 
-## Project Overview
+* intelligent realtime interaction
+* contextual engagement
+* emotional participation
+* predictive experiences
+* AI-driven second-screen experiences
 
-FanVerse AI is an intelligent multi-agent sports engagement platform that turns passive viewers into active participants during live matches. It aims to create a dynamic second-screen experience that goes beyond traditional sports apps.
-FanVerse AI is an intelligent multi-agent sports engagement platform that turns passive viewers into active participants during live matches. It aims to create a dynamic second-screen experience that goes beyond traditional sports apps.
+FanVerse AI transforms passive viewers into active participants using realtime AI orchestration.
 
-## Core Features
+---
 
-## Core Featuresiew
+# 💡 Solution Overview
 
-- **Live Match Dashboard**: Real-time scores, overs, run rate, momentum meter, and win probability.
-- **AI Commentary Agent**: Gemini-powered live insights, emotional commentary, and tactical analysis.
-- **Prediction Engine**: Interactive predictions for match events with a gamified leaderboard.alysis.
-- **Fan Engagement Agent**: Live polls, quizzes, reactions, and mini challenges.d leaderboard.s into active participants during live matches. It aims to create a dynamic second-screen experience that goes beyond traditional sports apps.
-- **AI Chat Companion**: An interactive Gemini chatbot for sports analysis and predictions.wers into active participants during live matches. It aims to create a dynamic second-screen experience that goes beyond traditional sports apps.
-- **AI Chat Companion**: An interactive Gemini chatbot for sports analysis and predictions.
+FanVerse AI is a realtime multi-agent sports engagement platform powered by:
 
-## Tech Stackres
+* Gemini AI
+* Firebase
+* Next.js
+* FastAPI
+* Event-driven orchestration
 
-## Tech Stack
+The system reacts autonomously to live match events and generates:
 
-- **Frontend**: Next.js, Tailwind CSS
-- **Backend**: FastAPI / Firebase Functions
-- **Database**: FirestoreFirebase Functionss, overs, run rate, momentum meter, and win probability.
-- **Realtime**: Firebase Listenerspowered live insights, emotional commentary, and tactical analysis.
-- **AI**: Gemini APIbase Listenersve predictions for match events with a gamified leaderboard.alysis.
-- **Hosting**: Firebase Hosting, Google Cloud Runreactions, and mini challenges.d leaderboard.
-- **Hosting**: Firebase Hosting, Google Cloud Runatbot for sports analysis and predictions.
+* AI commentary
+* momentum analysis
+* prediction polls
+* engagement triggers
+* leaderboard updates
+* interactive AI conversations
 
-## Getting Startedion\*\*: An interactive Gemini chatbot for sports analysis and predictions.
+---
 
-## Getting Started
+# ⚡ Core Features
 
-More detailed instructions will be provided here soon.
-More detailed instructions will be provided here soon.
+## 🏏 Live Match Dashboard
 
-## Development Setup
+* Live score updates
+* Overs tracking
+* Run rate analysis
+* Win probability
+* Momentum visualization
 
-## Development Setup
+## 🤖 AI Commentary Agent
 
-1.  Clone the repository.Tailwind CSS
-2.  Install dependencies for frontend and backend.
-3.  Set up Firebase and Google Cloud projects.end.
-4.  Configure environment variables (e.g., GEMINI_API_KEY).
-5.  Configure environment variables (e.g., GEMINI_API_KEY).
+Generates:
 
-## Deployment: Firebase Hosting, Google Cloud Run
+* emotional commentary
+* tactical insights
+* realtime reactions
 
-## Deployment: Firebase Hosting, Google Cloud Run
+## 📈 Momentum Engine
 
-Instructions for deploying to Firebase Hosting and Google Cloud Run will be provided.
-Instructions for deploying to Firebase Hosting and Google Cloud Run will be provided.
+Tracks:
 
-## Demo Flow
+* pressure shifts
+* match dynamics
+* probability swings
 
-## Demo Flowtarted
+## 🧠 Multi-Agent Architecture
 
-A killer demo flow is crucial for hackathon success. We will showcase:
-A killer demo flow is crucial for hackathon success. We will showcase:
+Agents collaborate autonomously:
 
-1.  **Event Simulation**: Virat hits a six. here soon.
-2.  **Real-time Agent Orchestration**: Match Agent, Commentary Agent, Prediction Agent, and Engagement Agent react autonomously.
-3.  **Dynamic UI Updates**: Momentum shifts, AI commentary updates, prediction polls appear, and leaderboards change instantly..
-4.  **AI Chat Interaction**: Ask the AI companion intelligent questions about the match.ear, and leaderboards change instantly.
-5.  **AI Chat Interaction**: Ask the AI companion intelligent questions about the match.
-    "Our autonomous AI agents collaborate in real time to transform passive sports viewing into an intelligent interactive experience."
-    "Our autonomous AI agents collaborate in real time to transform passive sports viewing into an intelligent interactive experience."
-    .gitignorel dependencies for frontend and backend.
-    .gitignore Firebase and Google Cloud projects.end.
-6.  Configure environment variables (e.g., GEMINI_API_KEY).
-7.  Configure environment variables (e.g., GEMINI_API_KEY).
+* Match Agent
+* Commentary Agent
+* Prediction Agent
+* Engagement Agent
 
-## Deployment
+## 🗳 Prediction Polls
 
-## Deployment
+Fans predict:
 
-\*.pyc**pycache**dist.next.envnode_modulessting and Google Cloud Run will be provided.
-Instructions for deploying to Firebase Hosting and Google Cloud Run will be provided.
+* wickets
+* boundaries
+* milestones
+* match outcomes
 
-## Demo Flow
+## 🏆 Leaderboards
 
-## Demo Flow
+Realtime ranking system for fan engagement.
 
-A killer demo flow is crucial for hackathon success. We will showcase:
-A killer demo flow is crucial for hackathon success. We will showcase:
+## 💬 AI Chat Companion
 
-1.  **Event Simulation**: Virat hits a six.
-2.  **Real-time Agent Orchestration**: Match Agent, Commentary Agent, Prediction Agent, and Engagement Agent react autonomously.
-3.  **Dynamic UI Updates**: Momentum shifts, AI commentary updates, prediction polls appear, and leaderboards change instantly..
-4.  **AI Chat Interaction**: Ask the AI companion intelligent questions about the match.ear, and leaderboards change instantly.
-5.  **AI Chat Interaction**: Ask the AI companion intelligent questions about the match.
-    "Our autonomous AI agents collaborate in real time to transform passive sports viewing into an intelligent interactive experience."
-    "Our autonomous AI agents collaborate in real time to transform passive sports viewing into an intelligent interactive experience."
-    .gitignore
-    .gitignore
+Interactive Gemini-powered sports assistant.
 
-\*.pyc**pycache**dist.next.envnode_modules
+---
+
+# 🧩 Multi-Agent Architecture
+
+```text
+Live Match Event
+        ↓
+Match Agent
+        ↓
+Commentary Agent
+        ↓
+Prediction Agent
+        ↓
+Engagement Agent
+        ↓
+Firestore Realtime Update
+        ↓
+Frontend Live Refresh
+```
+
+---
+
+# 🏗 Tech Stack
+
+| Layer      | Technology             |
+| ---------- | ---------------------- |
+| Frontend   | Next.js + Tailwind CSS |
+| Animations | Framer Motion          |
+| Backend    | FastAPI                |
+| AI         | Gemini API             |
+| Database   | Firestore              |
+| Hosting    | Firebase               |
+| Realtime   | Firebase Listeners     |
+| Language   | JavaScript + Python    |
+
+---
+
+# 📂 Project Structure
+
+```text
+backend/
+frontend/
+firebase/
+docs/
+README.md
+TASKS.md
+CLAUDE.md
+```
+
+---
+
+# 🎨 UI Design Philosophy
+
+* Futuristic sports UI
+* Glassmorphism
+* Dark theme
+* Realtime animations
+* Glowing LIVE indicators
+* Responsive layout
+* Smooth transitions
+
+---
+
+# 🚀 Development Priorities
+
+1. Realtime Dashboard
+2. AI Commentary
+3. Mock Match Engine
+4. Agent Orchestration
+5. Prediction Polls
+6. Leaderboards
+7. AI Chat Companion
+
+---
+
+# 🔥 Demo Flow
+
+```text
+Virat Kohli hits a six!
+        ↓
+AI Commentary Appears
+        ↓
+Momentum Meter Updates
+        ↓
+Prediction Poll Launches
+        ↓
+Leaderboard Updates
+        ↓
+AI Chat Explains Momentum Shift
+```
+
+---
+
+# ⚠️ Security Notes
+
+* Never commit `.env`
+* Rotate exposed API keys immediately
+* Use `.gitignore`
+* Keep secrets outside git history
+
+---
+
+# 🛠 Setup Instructions
+
+## Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn api.index:app --reload
+```
+
+---
+
+# 🔮 Future Scope
+
+* Real sports APIs
+* Voice commentary
+* Fantasy sports integration
+* Multi-language commentary
+* AI highlights generation
+* AR/VR stadium mode
+* WebSockets infrastructure
+* AI fan sentiment analysis
+
+---
+
+# 🏁 Hackathon Goal
+
+Deliver a highly polished realtime AI sports experience demonstrating:
+
+* multi-agent orchestration
+* realtime engagement
+* emotional interaction
+* AI-powered second-screen experiences
+
+---
+
+# 👨💻 Built For
+
+Google Cloud — Build with AI (Agentic Premier League)
