@@ -29,6 +29,9 @@ import AgentActivityMonitor from '../components/AgentActivityMonitor';
 import FanActivityFeed from '../components/FanActivityFeed';
 import ClanMap from '../components/ClanMap';
 import MatchReportModal from '../components/MatchReportModal';
+import ConfettiEffect from '../components/ConfettiEffect';
+import XPPulse from '../components/XPPulse';
+import ChatFAB from '../components/ChatFAB';
 import { useMatch } from '../hooks/useMatch';
 import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
 import { useState, useEffect } from 'react';
@@ -90,7 +93,8 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <Navbar />
+      <XPPulse xp={liveData?.engagement?.xp_earned || (matchData.overs % 1 === 0 ? 100 : 0)} />
+      <ConfettiEffect trigger={newAchievement} />
       <AchievementToast achievement={newAchievement} />
       <MatchReportModal 
         isOpen={isReportOpen} 
@@ -147,7 +151,9 @@ export default function Home() {
               </motion.span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">128K active fans</span>
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                <span className="text-cyan-400 font-black italic">{Math.floor(128000 + Math.random() * 5000).toLocaleString()}</span> active fans
+              </span>
               <span className="text-[10px] font-bold text-cyan-400/80">4.2M REACTIONS PROCESSED</span>
               <span className="text-[10px] font-bold text-purple-400">8 AI AGENTS ACTIVE</span>
             </div>
@@ -221,13 +227,13 @@ export default function Home() {
           <PredictionPoll />
           <ClanSystem />
           <ClanMap />
-          <AIChatPanel matchContext={matchData} />
         </div>
 
       </div>
 
       <TickerRibbon />
       <BroadcastTicker />
+      <ChatFAB matchContext={matchData} />
     </main>
   );
 }
