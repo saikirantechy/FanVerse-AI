@@ -37,9 +37,22 @@ export default function UserProfileCard({ user, onEdit }) {
           </div>
 
           <div className="flex-1 pt-16 md:pt-0">
-            <h1 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-2">
-              {user?.username || "Fan Analyst"}
-            </h1>
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-4xl font-black italic uppercase tracking-tighter text-white">
+                {user?.username || "Fan Analyst"}
+              </h1>
+              {user?.level >= 15 && (
+                <motion.div 
+                  animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="px-3 py-1 bg-gradient-to-tr from-yellow-500 to-orange-600 rounded-lg shadow-[0_0_20px_rgba(234,179,8,0.4)] border border-yellow-400/50"
+                >
+                  <span className="text-[8px] font-black text-black uppercase tracking-widest flex items-center gap-1">
+                    <Star size={10} fill="black" /> Prestige
+                  </span>
+                </motion.div>
+              )}
+            </div>
             <p className="text-gray-400 font-medium mb-4 max-w-lg">{user?.bio || "AI-powered sports strategist. Predicting momentum shifts since 2024."}</p>
             <div className="flex flex-wrap gap-4">
               <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-black text-cyan-400 uppercase tracking-widest">

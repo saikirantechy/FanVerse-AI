@@ -28,9 +28,13 @@ export default function EmojiRain({ trigger }) {
           <motion.div 
             key={e.id}
             initial={{ y: '-20%', x: `${e.x}%`, opacity: 0, scale: 0.5 }}
-            animate={{ y: '120%', opacity: 1, scale: 1 }}
+            animate={{ y: '120%', opacity: 1, scale: [1, 1.5, 1] }}
             exit={{ opacity: 0 }}
-            transition={{ duration: e.duration, ease: "linear" }}
+            transition={{ 
+              duration: e.duration, 
+              ease: "linear",
+              scale: { duration: 0.5, repeat: Infinity }
+            }}
             className="absolute text-xl"
           >
             {e.icon}
