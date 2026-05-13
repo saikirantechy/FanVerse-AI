@@ -2,21 +2,15 @@
 
 > AI-powered realtime second-screen sports engagement platform built for Google Cloud — Build with AI (Agentic Premier League).
 
+![FanVerse AI Dashboard Hero](./docs/hero.png)
+
 ---
 
 # 🏆 Problem Statement
 
-Modern sports viewing is mostly passive.
+Modern sports viewing is mostly passive. Fans watch live matches but lack intelligent realtime interaction, contextual engagement, and emotional participation.
 
-Fans watch live matches but lack:
-
-* intelligent realtime interaction
-* contextual engagement
-* emotional participation
-* predictive experiences
-* AI-driven second-screen experiences
-
-FanVerse AI transforms passive viewers into active participants using realtime AI orchestration.
+**FanVerse AI** transforms passive viewers into active participants using **Realtime AI Orchestration**.
 
 ---
 
@@ -24,94 +18,55 @@ FanVerse AI transforms passive viewers into active participants using realtime A
 
 FanVerse AI is a realtime multi-agent sports engagement platform powered by:
 
-* Gemini AI
-* Firebase
-* Next.js
-* FastAPI
-* Event-driven orchestration
-
-The system reacts autonomously to live match events and generates:
-
-* AI commentary
-* momentum analysis
-* prediction polls
-* engagement triggers
-* leaderboard updates
-* interactive AI conversations
+* **Gemini AI**: Generates emotional commentary and tactical insights.
+* **Multi-Agent Orchestration**: Autonomous agents react to live events in sync.
+* **Next.js & Framer Motion**: Premium, futuristic glassmorphism dashboard.
+* **Firebase**: Realtime state synchronization.
 
 ---
 
 # ⚡ Core Features
 
-## 🏏 Live Match Dashboard
-
-* Live score updates
-* Overs tracking
-* Run rate analysis
-* Win probability
-* Momentum visualization
-
-## 🤖 AI Commentary Agent
-
-Generates:
-
-* emotional commentary
-* tactical insights
-* realtime reactions
-
-## 📈 Momentum Engine
-
-Tracks:
-
-* pressure shifts
-* match dynamics
-* probability swings
-
-## 🧠 Multi-Agent Architecture
-
-Agents collaborate autonomously:
-
-* Match Agent
-* Commentary Agent
-* Prediction Agent
-* Engagement Agent
-
-## 🗳 Prediction Polls
-
-Fans predict:
-
-* wickets
-* boundaries
-* milestones
-* match outcomes
-
-## 🏆 Leaderboards
-
-Realtime ranking system for fan engagement.
-
-## 💬 AI Chat Companion
-
-Interactive Gemini-powered sports assistant.
+* 🏏 **Live Match Dashboard**: Score updates, overs tracking, and run rate analysis.
+* 🤖 **AI Commentary Agent**: Generates emotional, situational commentary using Gemini.
+* 📈 **Momentum Engine**: Visualizes match pressure shifts in realtime.
+* 🧠 **Multi-Agent Architecture**: Agents collaborate autonomously (Match, Commentary, Prediction, Engagement).
+* 🗳 **Prediction Polls**: Contextual polls launched based on match events.
+* 🏆 **Leaderboards**: Realtime ranking system for fan engagement.
+* 💬 **AI Chat Companion**: Interactive Gemini-powered sports assistant.
 
 ---
 
 # 🧩 Multi-Agent Architecture
 
+> "Our system does not simply display sports data — it autonomously orchestrates multiple AI agents in realtime to emotionally engage fans during live matches."
+
 ```text
 Live Match Event
         ↓
-Match Agent
+Match Agent (Analysis)
         ↓
-Commentary Agent
+Commentary Agent (Gemini AI)
         ↓
-Prediction Agent
+Prediction Agent (Polls & Momentum)
         ↓
-Engagement Agent
+Engagement Agent (Leaderboard)
         ↓
 Firestore Realtime Update
         ↓
-Frontend Live Refresh
+Frontend Live Refresh (Staggered Animation)
 ```
+
+---
+
+# 🎤 Demo Flow (Cinematic Experience)
+
+1. **Live Event**: Virat Kohli hits a massive six!
+2. **AI Commentary**: Commentary Agent reacts instantly with emotional flair.
+3. **Momentum Spike**: The Momentum Meter spikes toward RCB as the pressure shifts.
+4. **Prediction Poll**: A poll launches: "Can the bowler bounce back in the next 3 balls?"
+5. **Leaderboard Update**: RCB fans receive bonus points for the boundary.
+6. **AI Chat**: The Gemini assistant explains the win probability shift to the user.
 
 ---
 
@@ -121,22 +76,20 @@ Frontend Live Refresh
 | ---------- | ---------------------- |
 | Frontend   | Next.js + Tailwind CSS |
 | Animations | Framer Motion          |
-| Backend    | FastAPI                |
+| Backend    | FastAPI + Python       |
 | AI         | Gemini API             |
 | Database   | Firestore              |
-| Hosting    | Firebase               |
-| Realtime   | Firebase Listeners     |
-| Language   | JavaScript + Python    |
+| Hosting    | Vercel / Firebase      |
 
 ---
 
 # 📂 Project Structure
 
 ```text
-backend/
-frontend/
-firebase/
-docs/
+backend/     # FastAPI Agents & Orchestrator
+frontend/    # Next.js Dashboard UI
+firebase/    # Firebase configurations
+docs/        # Assets & Documentation
 README.md
 TASKS.md
 CLAUDE.md
@@ -144,61 +97,38 @@ CLAUDE.md
 
 ---
 
-# 🎨 UI Design Philosophy
+# 🌐 Deployment Options
 
-* Futuristic sports UI
-* Glassmorphism
-* Dark theme
-* Realtime animations
-* Glowing LIVE indicators
-* Responsive layout
-* Smooth transitions
+FanVerse AI can be deployed and shared publicly using modern hosting platforms.
 
----
+## 🚀 Recommended Deployment Platforms
 
-# 🚀 Development Priorities
-
-1. Realtime Dashboard
-2. AI Commentary
-3. Mock Match Engine
-4. Agent Orchestration
-5. Prediction Polls
-6. Leaderboards
-7. AI Chat Companion
-
----
-
-# 🔥 Demo Flow
-
-```text
-Virat Kohli hits a six!
-        ↓
-AI Commentary Appears
-        ↓
-Momentum Meter Updates
-        ↓
-Prediction Poll Launches
-        ↓
-Leaderboard Updates
-        ↓
-AI Chat Explains Momentum Shift
+### 1. Vercel (Recommended)
+Best option for Next.js applications. Features instant deployments and CI/CD.
+```bash
+cd frontend && npm run build
 ```
 
+### 2. Firebase Hosting
+Recommended for Google Cloud ecosystem compatibility and scalable hosting.
+```bash
+firebase deploy
+```
+
+### 3. GitHub Pages
+Perfect for static showcase and hackathon portfolio demos.
+
 ---
 
-# ⚠️ Security Notes
+# 🏆 Hackathon Goal
 
-* Never commit `.env`
-* Rotate exposed API keys immediately
-* Use `.gitignore`
-* Keep secrets outside git history
+Deliver a highly polished realtime AI sports experience demonstrating multi-agent orchestration, realtime engagement, and emotional interaction for the **Google Cloud Build with AI (Agentic Premier League)**.
 
 ---
 
-# 🛠 Setup Instructions
+# 🏁 Setup Instructions
 
 ## Frontend
-
 ```bash
 cd frontend
 npm install
@@ -206,7 +136,6 @@ npm run dev
 ```
 
 ## Backend
-
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -215,30 +144,5 @@ uvicorn api.index:app --reload
 
 ---
 
-# 🔮 Future Scope
-
-* Real sports APIs
-* Voice commentary
-* Fantasy sports integration
-* Multi-language commentary
-* AI highlights generation
-* AR/VR stadium mode
-* WebSockets infrastructure
-* AI fan sentiment analysis
-
----
-
-# 🏁 Hackathon Goal
-
-Deliver a highly polished realtime AI sports experience demonstrating:
-
-* multi-agent orchestration
-* realtime engagement
-* emotional interaction
-* AI-powered second-screen experiences
-
----
-
 # 👨💻 Built For
-
-Google Cloud — Build with AI (Agentic Premier League)
+**Google Cloud — Build with AI (Agentic Premier League)**
