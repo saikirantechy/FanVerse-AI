@@ -1,54 +1,60 @@
+'use client';
+
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Map } from 'lucide-react';
 
 export default function FieldHeatmap() {
-  const zones = [
-    { id: 'off', label: 'Off Side', value: 65, color: 'bg-cyan-500' },
-    { id: 'leg', label: 'Leg Side', value: 35, color: 'bg-orange-500' },
-    { id: 'straight', label: 'Straight', value: 48, color: 'bg-green-500' },
+  const [historyIndex, setHistoryIndex] = useState(10);
+
+  const points = [
+    { x: 30, y: 40, intensity: 0.8 * (historyIndex / 10) },
+    { x: 70, y: 60, intensity: 0.6 * (historyIndex / 10) },
+    { x: 50, y: 50, intensity: 0.9 * (historyIndex / 10) },
+    { x: 20, y: 80, intensity: 0.4 * (historyIndex / 10) },
   ];
 
   return (
     <div className="glass-card p-6 border-white/5 bg-white/5 overflow-hidden">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Batter Scoring Zones</h3>
-        <span className="text-[8px] font-black text-cyan-400 uppercase tracking-widest">Spatial Analysis</span>
-      </div>
-
-      <div className="relative h-48 flex items-center justify-center">
-        {/* Abstract Cricket Field (Circle) */}
-        <div className="absolute w-40 h-40 border-2 border-white/10 rounded-full flex items-center justify-center">
-          <div className="w-1 h-12 bg-white/20 rounded-full" /> {/* Pitch */}
+        <div>
+          <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-1">Field Activity Heatmap</h3>
+          <p className="text-xs font-black text-white italic uppercase tracking-tighter">Tactical Hotspots</p>
         </div>
-
-        {/* Scoring Pulses */}
-        <motion.div 
-          animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute top-1/4 right-1/4 w-12 h-12 bg-cyan-500/20 rounded-full blur-xl"
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-          className="absolute bottom-1/3 left-1/3 w-8 h-8 bg-orange-500/20 rounded-full blur-lg"
-        />
+        <Map size={16} className="text-gray-500" />
       </div>
 
-      <div className="mt-8 space-y-4">
-        {zones.map((zone) => (
-          <div key={zone.id}>
-            <div className="flex justify-between text-[8px] font-black uppercase text-gray-500 mb-2">
-              <span>{zone.label}</span>
-              <span>{zone.value}%</span>
-            </div>
-            <div className="flex h-1 w-full bg-white/5 rounded-full overflow-hidden">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: `${zone.value}%` }}
-                className={`h-full ${zone.color}`}
-              />
-            </div>
-          </div>
+      <div className="relative aspect-square bg-[#0a0a0a] rounded-2xl border border-white/5 overflow-hidden mb-6">
+        {/* Field Lines */}
+        <div className="absolute inset-0 border-2 border-white/5 rounded-full m-4" />
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5" />
+        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-white/5" />
+        
+        {/* Heat Points */}
+        {points.map((p, i) => (
+          <motion.div
+            key={i}
+            initial={{ scale: 0 }}
+            animate={{ scale: p.intensity * 2.5 }}
+            className="absolute w-12 h-12 bg-cyan-500/30 rounded-full blur-xl"
+            style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)' }}
+          />
         ))}
+      </div>
+
+      <div className="space-y-4">
+        <div className="flex justify-between items-center text-[8px] font-black text-gray-600 uppercase tracking-widest">
+          <span>Tactical Replay</span>
+          <span>{historyIndex * 2} min ago</span>
+        </div>
+        <input 
+          type="range" 
+          min="1" 
+          max="10" 
+          value={historyIndex}
+          onChange={(e) => setHistoryIndex(parseInt(e.target.value))}
+          className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+        />
       </div>
     </div>
   );
