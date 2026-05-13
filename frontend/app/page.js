@@ -17,12 +17,42 @@ import ProfileCard from '../components/ProfileCard';
 import DailyChallenges from '../components/DailyChallenges';
 import LivePlayMode from '../components/LivePlayMode';
 import { motion, AnimatePresence } from 'framer-motion';
+import AchievementToast from '../components/AchievementToast';
+import ShareCardGenerator from '../components/ShareCardGenerator';
 import { useMatch } from '../hooks/useMatch';
-import { useState } from 'react';
+import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
-  const { matchData, momentum, events, activePoll, insight, social, agentDecision, history, flash } = useMatch();
+  const simulator = useMatch();
+  const { data: liveData } = useFirestoreMatch("match_001");
   const [isLivePlay, setIsLivePlay] = useState(true);
+  const [newAchievement, setNewAchievement] = useState(null);
+
+  // Monitor for new badges
+  useEffect(() => {
+    if (liveData?.engagement?.new_badges?.length > 0) {
+      setNewAchievement(liveData.engagement.new_badges[0]);
+    }
+  }, [liveData?.engagement?.new_badges]);
+
+  // Merge simulator and live data
+  const matchData = liveData?.score ? { 
+    ...simulator.matchData, 
+    team1: { ...simulator.matchData.team1, score: liveData.score.split(' ')[0] },
+    overs: liveData.overs,
+    status: liveData.match_status
+  } : simulator.matchData;
+
+  const momentum = liveData?.win_probability !== undefined ? (liveData.win_probability > 50 ? 30 : -30) : simulator.momentum;
+  const events = liveData?.commentary ? [liveData.commentary, ...simulator.events].slice(0, 5) : simulator.events;
+  const insight = liveData?.strategic_insight || simulator.insight;
+  const storyline = liveData?.storyline || "The stage is set for a historic finish.";
+  const social = liveData?.social || simulator.social;
+  const agentDecision = liveData?.match_status ? `NarrativeAgent: Building emotional arc...` : simulator.agentDecision;
+  const activePoll = liveData?.poll || simulator.activePoll;
+  const flash = simulator.flash;
+  const history = simulator.history;
 
   return (
     <main className="min-h-screen pt-24 pb-24 px-6 relative bg-[#050505] overflow-hidden">
@@ -43,6 +73,7 @@ export default function Home() {
       </AnimatePresence>
 
       <Navbar />
+      <AchievementToast achievement={newAchievement} />
 
       <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
         
@@ -50,6 +81,23 @@ export default function Home() {
         <div className="lg:col-span-3 space-y-6">
           <ProfileCard />
           <LivePlayMode isActive={isLivePlay} onToggle={() => setIsLivePlay(!isLivePlay)} />
+          
+          {/* Narrative Arc Section */}
+          <motion.div 
+            key={storyline}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="glass-card p-6 border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-transparent"
+          >
+            <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+              Director's Cut: Match Narrative
+            </p>
+            <p className="text-sm font-medium text-gray-200 italic leading-relaxed">
+              "{storyline}"
+            </p>
+          </motion.div>
+
           <DailyChallenges />
           <AgentActivityPanel />
         </div>
@@ -73,8 +121,9 @@ export default function Home() {
               </motion.span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Global Rank: #1,284</span>
-              <span className="text-[10px] font-bold text-cyan-400/80">12,482 FANS ONLINE</span>
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">128K active fans</span>
+              <span className="text-[10px] font-bold text-cyan-400/80">4.2M REACTIONS PROCESSED</span>
+              <span className="text-[10px] font-bold text-purple-400">8 AI AGENTS ACTIVE</span>
             </div>
           </div>
 
@@ -138,10 +187,11 @@ export default function Home() {
         {/* Right Column - Social & Prediction (3 cols) */}
         <div className="lg:col-span-3 space-y-6">
           <MatchTimeline events={history} />
+          <ShareCardGenerator matchData={matchData} storyline={storyline} />
           <CommentaryFeed events={events} />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
-          <AIChatPanel />
+          <AIChatPanel matchContext={matchData} />
         </div>
 
       </div>

@@ -3,26 +3,46 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-export default function AIChatPanel() {
+export default function AIChatPanel(props) {
   const [messages, setMessages] = useState([
     { role: 'assistant', content: "Hi! I'm your AI Sports Companion. CSK needs a big over here to stay in the hunt. Ask me anything about the match strategy or player stats!" }
   ]);
   const [input, setInput] = useState('');
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    setMessages([...messages, { role: 'user', content: input }]);
+    const userMessage = { role: 'user', content: input };
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
     
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      const response = await fetch('http://127.0.0.1:5001/fanverse-ai/us-central1/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: input,
+          history: messages.map(m => ({ role: m.role, parts: [{ text: m.content }] })),
+          match_context: props.matchContext
+        })
+      });
+
+      if (!response.ok) throw new Error('API Error');
+      
+      const data = await response.json();
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: "Analyzing momentum... Based on Virat Kohli's recent form against spin, he's likely to target the long-on boundary. The probability of a boundary in the next 6 balls has increased to 42%." 
+        content: data.response || "I'm processing that... The match is heating up!" 
       }]);
-    }, 1000);
+    } catch (error) {
+      console.error("Chat Error:", error);
+      // Fallback response
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: "The signal in the stadium is weak! (Backend not connected). But RCB is definitely under pressure here." 
+      }]);
+    }
   };
 
   return (

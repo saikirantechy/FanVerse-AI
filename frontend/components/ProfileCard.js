@@ -10,9 +10,10 @@ export default function ProfileCard() {
   ];
 
   const badges = [
-    { icon: '🎯', name: 'Oracle' },
-    { icon: '🔥', name: 'Viral' },
-    { icon: '👑', name: 'Legend' },
+    { icon: '🎯', name: 'Oracle', color: 'text-cyan-400' },
+    { icon: '🔥', name: 'Viral', color: 'text-orange-500' },
+    { icon: '👑', name: 'Legend', color: 'text-yellow-400' },
+    { icon: '🚀', name: 'Momentum', color: 'text-purple-400' },
   ];
 
   return (
@@ -48,7 +49,7 @@ export default function ProfileCard() {
             <motion.div 
               key={badge.name}
               whileHover={{ y: -5, scale: 1.1 }}
-              className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center cursor-help"
+              className={`w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center cursor-help shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-shadow ${badge.color}`}
               title={badge.name}
             >
               <span className="text-sm">{badge.icon}</span>

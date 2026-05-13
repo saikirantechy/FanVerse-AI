@@ -59,11 +59,11 @@
 * [x] Engagement Agent
 
 ## Infrastructure
-* [ ] Firestore sync
+* [x] Firestore sync (Backend implemented)
 * [x] Mock match engine
 * [x] Event orchestrator
-* [ ] API endpoints
-* [ ] Realtime listeners
+* [x] API endpoints (Chat & Orchestration)
+* [x] Realtime listeners (Frontend implemented)
 
 ---
 
@@ -71,10 +71,10 @@
 
 * [x] Gemini integration (Commentary)
 * [x] Commentary prompts
-* [ ] Retry handling
+* [x] Retry handling (Basic)
 * [ ] Fallback templates
 * [ ] Rate limit protection
-* [ ] AI chat assistant
+* [x] AI chat assistant (Connected)
 
 ---
 
@@ -126,7 +126,8 @@
 6. Orchestrator (DONE)
 7. Prediction Polls (DONE)
 8. Leaderboard (DONE)
-9. AI Chat Companion (WIP)
+9. AI Chat Companion (DONE)
+10. Insight Agent (DONE)
 
 ---
 
@@ -185,16 +186,16 @@ These are now core platform systems.
 
 ## 🧠 AI Intelligence Layer
 
-* [ ] InsightAgent implementation
-* [ ] SocialAgent implementation
-* [ ] Viral moment detection
-* [ ] Crowd energy analysis
-* [ ] AI-generated match highlights
-* [ ] Context-aware AI chat memory
-* [ ] Multi-turn sports conversations
+* [x] InsightAgent implementation (Enhanced with Gemini)
+* [x] SocialAgent implementation (Enhanced with Gemini)
+* [x] Viral moment detection
+* [x] Crowd energy analysis
+* [x] AI-generated match highlights (Broadcast headlines)
+* [x] Context-aware AI chat memory
+* [x] Multi-turn sports conversations
 * [ ] Match timeline summarization
-* [ ] AI-generated player insights
-* [ ] Turning-point analysis engine
+* [x] AI-generated player insights
+* [x] Turning-point analysis engine
 
 Reference:
 
@@ -222,10 +223,10 @@ Reference:
 
 # 🎮 Fan Engagement Systems
 
-* [ ] XP reward engine
-* [ ] Badge achievement system
-* [ ] Fan streak tracking
-* [ ] Trivia challenge engine
+* [x] XP reward engine (Integrated with agents)
+* [x] Badge achievement system (Century Club, Momentum Master)
+* [x] Fan streak tracking (Real-time multipliers)
+* [x] Trivia challenge engine (Dynamic Gemini generation)
 * [ ] Live reaction spam controls
 * [ ] Match watch parties
 * [ ] Fan clans/community rooms
@@ -237,12 +238,12 @@ Reference:
 
 # 🏏 Sports Intelligence Features
 
-* [ ] Win probability engine
-* [ ] Pressure index calculation
+* [x] Win probability engine (Heuristic implemented)
+* [x] Pressure index calculation (Death-over weighted)
 * [ ] Momentum spike visualization
 * [ ] Venue history insights
 * [ ] Head-to-head player analysis
-* [ ] Tactical AI suggestions
+* [x] Tactical AI suggestions (Digital Captain mode)
 * [ ] Partnership analysis cards
 * [ ] AI captain decision simulator
 

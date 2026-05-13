@@ -34,8 +34,48 @@ class InsightAgent:
         except Exception:
             return "Strategic Insight: The dot-ball pressure is mounting on the middle order."
 
-    def get_player_insight(self, player_name: str) -> str:
+    def get_player_insight(self, player_name: str, match_context: Dict) -> str:
         """
-        Generates situational player insights.
+        Generates dynamic situational player insights.
         """
-        return f"{player_name} averages 45.2 in death overs when chasing. Expect aggressive intent."
+        if not self.model:
+            return f"{player_name} is a key player in this chase. Expect aggressive intent."
+
+        prompt = f"""
+        You are a sports analyst. 
+        Provide a 1-sentence strategic insight about {player_name} in the current match situation.
+        
+        SITUATION: {match_context.get('score')} in {match_context.get('overs')} overs.
+        PLAYER: {player_name}
+        
+        Focus on their role (finisher, anchor, etc.) and what they need to do right now.
+        """
+
+        try:
+            response = self.model.generate_content(prompt)
+            return response.text.strip()
+        except Exception:
+            return f"{player_name} averages 45.2 in death overs when chasing. Key for the final flourish."
+
+    def generate_tactical_suggestion(self, match_context: Dict) -> str:
+        """
+        Generates AI captain tactical suggestions.
+        """
+        if not self.model:
+            return "Tactical Tip: Focus on bowling tight lines in the next over."
+
+        prompt = f"""
+        You are an elite cricket coach and tactical analyst.
+        Provide 1 brief tactical suggestion for the bowling team based on the current score.
+        
+        SITUATION: {match_context.get('score')} in {match_context.get('overs')} overs.
+        
+        Focus on field placements, bowling changes, or specific plans for the batsman.
+        Keep it to 1 concise sentence.
+        """
+
+        try:
+            response = self.model.generate_content(prompt)
+            return response.text.strip()
+        except Exception:
+            return "Tactical Suggestion: Increase the pressure by bringing the field in for the new batsman."

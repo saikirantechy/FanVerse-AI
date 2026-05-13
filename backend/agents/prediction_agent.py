@@ -42,6 +42,30 @@ class PredictionAgent:
         }
 
     def recalculate_win_probability(self, match_data: Dict) -> float:
-        # Simple mock logic for demo
-        # Returns win probability for Team 1
-        return 65.0
+        """
+        Calculates win probability based on required run rate and wickets.
+        """
+        # In a real app, this would be a ML model. 
+        # For the demo, we use a situational formula.
+        overs_rem = 20.0 - float(match_data.get('overs', 0.0))
+        wickets_lost = int(match_data.get('team2', {}).get('score', '0/0').split('/')[1] if '/' in match_data.get('team2', {}).get('score', '') else 0)
+        
+        # Simple heuristic: 
+        # Lower wickets + Lower Req Run Rate = Higher Win Prob
+        base_prob = 50.0
+        if overs_rem > 0:
+            # Shift probability based on situation
+            if wickets_lost > 5: base_prob -= 15
+            if overs_rem < 5: base_prob += 10 # Tension bonus
+            
+        return min(95.0, max(5.0, base_prob))
+
+    def calculate_pressure_index(self, match_data: Dict) -> int:
+        """
+        Returns a pressure score from 0-100.
+        """
+        overs = float(match_data.get('overs', 0.0))
+        # Pressure peaks in death overs (16-20)
+        if overs > 15.0:
+            return int(70 + (overs - 15) * 6)
+        return int(overs * 4)
