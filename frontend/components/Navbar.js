@@ -16,7 +16,7 @@ export default function Navbar() {
           <a href="/" className="text-[10px] font-black uppercase tracking-[0.2em] text-white hover:text-cyan-400 transition-colors">Match</a>
           <a href="/leaderboard" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Arena</a>
           <a href="/profile" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Profile</a>
-          <a href="#" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Market</a>
+          <a href="/market" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Market</a>
         </div>
 
       <div className="flex items-center gap-4">

@@ -37,28 +37,46 @@ export default function ProfilePage() {
           <div className="lg:col-span-8 space-y-8">
             <SeasonPassport />
             
-            {/* XP Analytics Chart (Visual Mock) */}
+            {/* Achievement Gallery */}
             <div className="glass-card p-8 border-white/5 bg-white/5">
-              <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-8">XP Engagement Analytics</h3>
-              
-              <div className="h-64 flex items-end gap-2 px-4">
-                {[40, 70, 45, 90, 65, 80, 100, 55, 75, 85].map((h, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
-                    className="flex-1 bg-gradient-to-t from-cyan-500/20 to-cyan-500 rounded-t-lg relative group"
-                  >
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-cyan-500 text-black text-[8px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                      {h*12} XP
+              <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-6">Achievement Gallery</h3>
+              <div className="grid grid-cols-4 md:grid-cols-6 gap-4">
+                {[
+                  { icon: '🎯', name: 'Oracle' }, { icon: '🔥', name: 'Viral' }, 
+                  { icon: '👑', name: 'Legend' }, { icon: '🚀', name: 'Momentum' },
+                  { icon: '🏏', name: 'Century' }, { icon: '🧠', name: 'Genius' },
+                  { icon: '🛡️', name: 'Shield' }, { icon: '✨', name: 'Star' }
+                ].map((badge, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center text-xl grayscale hover:grayscale-0 transition-all cursor-help" title={badge.name}>
+                      {badge.icon}
                     </div>
-                  </motion.div>
+                    <span className="text-[6px] font-black uppercase text-gray-600">{badge.name}</span>
+                  </div>
                 ))}
               </div>
-              <div className="flex justify-between mt-6 px-4 text-[8px] font-black text-gray-600 uppercase tracking-widest">
-                <span>Match 1</span>
-                <span>Match 5</span>
-                <span>Match 10 (Current)</span>
+            </div>
+
+            {/* Match History */}
+            <div className="glass-card p-8 border-white/5 bg-white/5">
+              <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-6">Match History</h3>
+              <div className="space-y-4">
+                {[
+                  { match: 'CSK vs RCB', date: 'Yesterday', result: 'WIN', xp: '+1,420', coins: '+250' },
+                  { match: 'MI vs GT', date: '2 days ago', result: 'LOSS', xp: '+850', coins: '+120' },
+                  { match: 'KKR vs LSG', date: '3 days ago', result: 'WIN', xp: '+1,200', coins: '+210' },
+                ].map((m, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 bg-black/40 rounded-xl border border-white/5">
+                    <div>
+                      <h4 className="text-sm font-black uppercase italic text-white leading-tight">{m.match}</h4>
+                      <p className="text-[8px] font-bold text-gray-500 uppercase tracking-widest mt-0.5">{m.date} • {m.result}</p>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs font-black text-cyan-400">{m.xp} XP</div>
+                      <div className="text-[8px] font-black text-yellow-500 uppercase tracking-widest">{m.coins} Coins</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 

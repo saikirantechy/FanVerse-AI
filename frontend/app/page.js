@@ -7,7 +7,7 @@ import MomentumMeter from '../components/MomentumMeter';
 import PredictionPoll from '../components/PredictionPoll';
 import Leaderboard from '../components/Leaderboard';
 import AIChatPanel from '../components/AIChatPanel';
-import StrategicInsight from '../components/StrategicInsight';
+import AICaptainConsensus from '../components/AICaptainConsensus';
 import CrowdEnergy from '../components/CrowdEnergy';
 import MatchTimeline from '../components/MatchTimeline';
 import AgentActivityPanel from '../components/AgentActivityPanel';
@@ -27,6 +27,7 @@ import CrowdPowerMeter from '../components/CrowdPowerMeter';
 import BroadcastTicker from '../components/BroadcastTicker';
 import AgentActivityMonitor from '../components/AgentActivityMonitor';
 import FanActivityFeed from '../components/FanActivityFeed';
+import ClanMap from '../components/ClanMap';
 import MatchReportModal from '../components/MatchReportModal';
 import { useMatch } from '../hooks/useMatch';
 import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
@@ -156,7 +157,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <MomentumMeter value={momentum} />
-            <StrategicInsight insight={insight} />
+            <AICaptainConsensus insight={insight} />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -219,6 +220,7 @@ export default function Home() {
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
           <ClanSystem />
+          <ClanMap />
           <AIChatPanel matchContext={matchData} />
         </div>
 
