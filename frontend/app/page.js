@@ -31,10 +31,11 @@ import SquadComparison from '../components/SquadComparison';
 import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
-import ClanMap from '../components/ClanMap';
+import InteractionHeatmap from '../components/InteractionHeatmap';
 import MatchReportModal from '../components/MatchReportModal';
 import MatchStatsModal from '../components/MatchStatsModal';
 import LevelUpModal from '../components/LevelUpModal';
+import CheerButton from '../components/CheerButton';
 import PredictionLeaderboard from '../components/PredictionLeaderboard';
 import ConfettiEffect from '../components/ConfettiEffect';
 import FlashEvent from '../components/FlashEvent';
@@ -265,7 +266,7 @@ export default function Home() {
             <AccuracyTracker />
           </div>
           <ClanSystem />
-          <ClanMap />
+          <InteractionHeatmap />
         </div>
 
       </div>
@@ -273,6 +274,7 @@ export default function Home() {
       <TickerRibbon />
       <BroadcastTicker />
       <ChatFAB matchContext={matchData} />
+      <CheerButton />
     </main>
   );
 }
