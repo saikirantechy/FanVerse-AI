@@ -1,12 +1,12 @@
 # 🚀 FanVerse AI
 
-> **An AI-native realtime sports engagement operating system powered by autonomous multi-agent orchestration.** Built for Google Cloud — Build with AI (Agentic Premier League).
-
-![FanVerse AI Dashboard Hero](./docs/hero.png)
+> **An AI-native gamified sports engagement ecosystem with adaptive fan progression.** Powered by autonomous multi-agent orchestration for the Google Cloud — Build with AI (Agentic Premier League) Challenge.
 
 ---
 
-## 🏆 The Vision: Passive Watching → Interactive AI Experience
+## 🎖️ Challenge 2 Focus: Gamification & Adaptive Behavior
+
+FanVerse AI isn't just a dashboard; it's a **behavior-driven progression system**. We use Gemini-powered agents to analyze fan behavior and adapt the entire experience—from difficulty levels to tactical suggestions—creating a "Fan DNA" that evolves every match.
 
 Modern sports viewing is passive. Fans watch matches but lack intelligent realtime interaction. **FanVerse AI** transforms the living room into a cinematic, interactive arena where **8 autonomous agents** collaborate to narrate, analyze, and engage fans in realtime.
 
