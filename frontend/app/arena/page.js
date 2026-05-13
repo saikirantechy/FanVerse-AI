@@ -5,6 +5,7 @@ import QuizArena from '../../components/QuizArena';
 import MegaLeaderboard from '../../components/MegaLeaderboard';
 import MatchArchive from '../../components/MatchArchive';
 import AIReplayCommentary from '../../components/AIReplayCommentary';
+import ReplayShareCard from '../../components/ReplayShareCard';
 import BackgroundParticles from '../../components/BackgroundParticles';
 import { Trophy, Star, Shield, Zap, History, LayoutGrid } from 'lucide-react';
 
@@ -87,9 +88,12 @@ export default function ArenaPage() {
 
         {activeTab === 'leaderboard' && <MegaLeaderboard />}
         {activeTab === 'archive' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <MatchArchive />
-            <AIReplayCommentary />
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <MatchArchive />
+              <AIReplayCommentary />
+            </div>
+            <ReplayShareCard />
           </div>
         )}
       </div>
