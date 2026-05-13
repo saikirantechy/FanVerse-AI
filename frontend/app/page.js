@@ -67,6 +67,8 @@ export default function Home() {
   useEffect(() => {
     if (liveData?.match_status === 'completed') {
       setIsReportOpen(true);
+      // Trigger level up on match end for demo
+      setTimeout(() => setIsLevelUpOpen(true), 3000);
     }
   }, [liveData?.match_status]);
 

@@ -13,11 +13,11 @@ export default function InteractionHeatmap() {
     return () => clearInterval(interval);
   }, []);
   const cities = [
-    { name: 'Mumbai', energy: 85, color: 'bg-blue-500', x: 20, y: 60 },
-    { name: 'Bangalore', energy: 95, color: 'bg-red-500', x: 30, y: 80 },
-    { name: 'Chennai', energy: 70, color: 'bg-yellow-500', x: 40, y: 75 },
-    { name: 'Delhi', energy: 60, color: 'bg-blue-800', x: 25, y: 30 },
-    { name: 'Kolkata', energy: 50, color: 'bg-purple-700', x: 70, y: 45 },
+    { name: 'Mumbai', energy: 85, color: 'bg-blue-500', x: 20, y: 60, trend: '#HitmanEra' },
+    { name: 'Bangalore', energy: 95, color: 'bg-red-500', x: 30, y: 80, trend: '#RCBForever' },
+    { name: 'Chennai', energy: 70, color: 'bg-yellow-500', x: 40, y: 75, trend: '#WhistlePodu' },
+    { name: 'Delhi', energy: 60, color: 'bg-blue-800', x: 25, y: 30, trend: '#RoarMachaa' },
+    { name: 'Kolkata', energy: 50, color: 'bg-purple-700', x: 70, y: 45, trend: '#AmiKKR' },
   ];
 
   return (
@@ -54,12 +54,13 @@ export default function InteractionHeatmap() {
               left: `${city.x}%`, 
               top: `${city.y}%` 
             }}
-            className="absolute -translate-x-1/2 -translate-y-1/2"
+            className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer z-30"
           >
             <div className={`w-4 h-4 rounded-full ${city.color} blur-[4px]`} />
             <div className={`absolute inset-0 w-4 h-4 rounded-full ${city.color} animate-ping opacity-40`} />
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/80 px-2 py-0.5 rounded border border-white/10 opacity-0 hover:opacity-100 transition-opacity">
-              <span className="text-[6px] font-black text-white uppercase whitespace-nowrap">{city.name}: {city.energy}%</span>
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/90 px-3 py-2 rounded-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none">
+              <p className="text-[8px] font-black text-white uppercase whitespace-nowrap mb-1">{city.name}: {city.energy}%</p>
+              <p className="text-[10px] font-black text-cyan-400 italic whitespace-nowrap">{city.trend}</p>
             </div>
           </motion.div>
         ))}
