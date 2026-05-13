@@ -38,10 +38,12 @@ import PressureGauge from '../components/PressureGauge';
 import FieldHeatmap from '../components/FieldHeatmap';
 import MatchScript from '../components/MatchScript';
 import WeatherWidget from '../components/WeatherWidget';
+import MatchTempo from '../components/MatchTempo';
 import MatchStatusBadges from '../components/MatchStatusBadges';
 import MatchReportModal from '../components/MatchReportModal';
 import MatchStatsModal from '../components/MatchStatsModal';
 import LevelUpModal from '../components/LevelUpModal';
+import InsightPopup from '../components/InsightPopup';
 import CheerButton from '../components/CheerButton';
 import PredictionLeaderboard from '../components/PredictionLeaderboard';
 import ConfettiEffect from '../components/ConfettiEffect';
@@ -218,29 +220,7 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="grid grid-cols-2 gap-6">
-              <motion.div 
-                key={matchData.overs}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-4 flex flex-col justify-center items-center text-center space-y-2 border-green-500/20"
-              >
-                <p className="text-[10px] font-bold text-green-400 uppercase tracking-widest">Win Probability</p>
-                <p className="text-3xl font-black italic">{momentum > 0 ? '72%' : '48%'}</p>
-                <p className="text-xs text-gray-500 font-medium">{momentum > 0 ? 'RCB in command' : 'CSK catching up'}</p>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-4 flex flex-col justify-center items-center text-center space-y-2 border-orange-500/20"
-              >
-                <p className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Required Rate</p>
-                <p className="text-3xl font-black italic">10.15</p>
-                <p className="text-xs text-gray-500 font-medium">CSK under pressure</p>
-              </motion.div>
-            </div>
-            
+            <MatchTempo overs={matchData.overs} />
             <AgentFlowDiagram />
           </div>
 
@@ -292,6 +272,7 @@ export default function Home() {
       <BroadcastTicker />
       <ChatFAB matchContext={matchData} />
       <CheerButton />
+      <InsightPopup />
     </main>
   );
 }
