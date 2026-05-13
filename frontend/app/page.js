@@ -27,6 +27,7 @@ import CrowdPowerMeter from '../components/CrowdPowerMeter';
 import BroadcastTicker from '../components/BroadcastTicker';
 import AgentActivityMonitor from '../components/AgentActivityMonitor';
 import FanActivityFeed from '../components/FanActivityFeed';
+import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import ClanMap from '../components/ClanMap';
@@ -34,6 +35,7 @@ import MatchReportModal from '../components/MatchReportModal';
 import MatchStatsModal from '../components/MatchStatsModal';
 import PredictionLeaderboard from '../components/PredictionLeaderboard';
 import ConfettiEffect from '../components/ConfettiEffect';
+import FlashEvent from '../components/FlashEvent';
 import XPPulse from '../components/XPPulse';
 import BackgroundParticles from '../components/BackgroundParticles';
 import ChatFAB from '../components/ChatFAB';
@@ -103,6 +105,7 @@ export default function Home() {
 
       <XPPulse xp={liveData?.engagement?.xp_earned || (matchData.overs % 1 === 0 ? 100 : 0)} />
       <ConfettiEffect trigger={newAchievement} />
+      <FlashEvent event={flash ? { type: 'six', text: 'CLEARED THE ROOF!' } : null} />
       <AchievementToast achievement={newAchievement} />
       <MatchReportModal 
         isOpen={isReportOpen} 
@@ -243,6 +246,7 @@ export default function Home() {
           <ViralHighlightGenerator matchData={matchData} storyline={storyline} />
           <CommentaryFeed events={events} />
           <CrowdPowerMeter energy={social.energy} />
+          <HighlightsPlayer />
           <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
