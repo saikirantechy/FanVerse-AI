@@ -33,6 +33,7 @@ import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import InteractionHeatmap from '../components/InteractionHeatmap';
+import ViralTimeline from '../components/ViralTimeline';
 import TeamDynamics from '../components/TeamDynamics';
 import PressureGauge from '../components/PressureGauge';
 import FieldHeatmap from '../components/FieldHeatmap';
@@ -221,6 +222,8 @@ export default function Home() {
             <TeamDynamics />
           </div>
           
+          <ViralTimeline />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <MatchTempo overs={matchData.overs} />
             <AgentFlowDiagram />
