@@ -33,6 +33,8 @@ import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import InteractionHeatmap from '../components/InteractionHeatmap';
+import MatchScript from '../components/MatchScript';
+import WeatherWidget from '../components/WeatherWidget';
 import MatchStatusBadges from '../components/MatchStatusBadges';
 import MatchReportModal from '../components/MatchReportModal';
 import MatchStatsModal from '../components/MatchStatsModal';
@@ -142,6 +144,8 @@ export default function Home() {
           <FanDNAProfile dna={liveData?.fan_dna} />
           <LivePlayMode isActive={isLivePlay} onToggle={() => setIsLivePlay(!isLivePlay)} />
           
+          <MatchScript storyline={storyline} />
+
           {/* Narrative Arc Section */}
           <motion.div 
             key={storyline}
@@ -160,6 +164,7 @@ export default function Home() {
 
           <SeasonPassport />
           <FanActivityFeed />
+          <WeatherWidget />
           <AgentActivityMonitor />
         </div>
 
