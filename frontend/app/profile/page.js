@@ -4,6 +4,7 @@ import { useState } from 'react';
 import UserProfileCard from '../../components/UserProfileCard';
 import BadgeGallery from '../../components/BadgeGallery';
 import AIAvatarGenerator from '../../components/AIAvatarGenerator';
+import DailyCheckin from '../../components/DailyCheckin';
 import ShareCardGenerator from '../../components/ShareCardGenerator';
 import FanPostGenerator from '../../components/FanPostGenerator';
 import ReputationLeaderboard from '../../components/ReputationLeaderboard';
@@ -37,6 +38,7 @@ export default function ProfilePage() {
             <ShareCardGenerator type="prediction" />
           </div>
           <div className="space-y-12">
+            <DailyCheckin />
             <FanPostGenerator />
             <ReputationLeaderboard />
             <div className="glass-card p-8 border-white/5">
