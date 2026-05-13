@@ -27,11 +27,13 @@ import CrowdPowerMeter from '../components/CrowdPowerMeter';
 import BroadcastTicker from '../components/BroadcastTicker';
 import AgentActivityMonitor from '../components/AgentActivityMonitor';
 import FanActivityFeed from '../components/FanActivityFeed';
+import ConfidenceGauge from '../components/ConfidenceGauge';
 import SquadComparison from '../components/SquadComparison';
 import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import InteractionHeatmap from '../components/InteractionHeatmap';
+import MatchStatusBadges from '../components/MatchStatusBadges';
 import MatchReportModal from '../components/MatchReportModal';
 import MatchStatsModal from '../components/MatchStatsModal';
 import LevelUpModal from '../components/LevelUpModal';
@@ -180,6 +182,7 @@ export default function Home() {
               </motion.span>
             </div>
             <div className="flex items-center gap-4">
+              <MatchStatusBadges overs={matchData.overs} status={matchData.status} />
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                 <span className="text-cyan-400 font-black italic">{Math.floor(128000 + Math.random() * 5000).toLocaleString()}</span> active fans
               </span>
@@ -262,6 +265,7 @@ export default function Home() {
           <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
+          <ConfidenceGauge />
           <div onClick={() => setIsPredRankOpen(true)} className="cursor-pointer">
             <AccuracyTracker />
           </div>
