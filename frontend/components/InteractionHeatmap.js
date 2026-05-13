@@ -1,6 +1,17 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import EmojiRain from './EmojiRain';
 
 export default function InteractionHeatmap() {
+  const [trigger, setTrigger] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTrigger(true);
+      setTimeout(() => setTrigger(false), 500);
+    }, 15000);
+    return () => clearInterval(interval);
+  }, []);
   const cities = [
     { name: 'Mumbai', energy: 85, color: 'bg-blue-500', x: 20, y: 60 },
     { name: 'Bangalore', energy: 95, color: 'bg-red-500', x: 30, y: 80 },
@@ -20,6 +31,7 @@ export default function InteractionHeatmap() {
       </div>
 
       <div className="relative h-48 bg-black/40 rounded-2xl border border-white/5 overflow-hidden">
+        <EmojiRain trigger={trigger} />
         {/* Abstract India Map Visual */}
         <div className="absolute inset-0 opacity-10 flex items-center justify-center">
           <div className="w-64 h-64 border border-white/20 rounded-full animate-ping" />
