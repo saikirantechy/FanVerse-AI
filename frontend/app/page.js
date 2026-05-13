@@ -23,6 +23,7 @@ import FanDNAProfile from '../components/FanDNAProfile';
 import FanRewardStore from '../components/FanRewardStore';
 import SeasonPassport from '../components/SeasonPassport';
 import ClanSystem from '../components/ClanSystem';
+import CrowdPowerMeter from '../components/CrowdPowerMeter';
 import { useMatch } from '../hooks/useMatch';
 import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
 import { useState, useEffect } from 'react';
@@ -194,6 +195,7 @@ export default function Home() {
           <MatchTimeline events={history} />
           <ShareCardGenerator matchData={matchData} storyline={storyline} />
           <CommentaryFeed events={events} />
+          <CrowdPowerMeter energy={social.energy} />
           <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />

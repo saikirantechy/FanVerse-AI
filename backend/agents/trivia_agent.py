@@ -12,10 +12,16 @@ class TriviaAgent:
         else:
             self.model = None
 
-    def generate_trivia(self, match_context: Dict) -> Dict:
+    def generate_trivia(self, match_context: Dict, fan_dna: Dict = None) -> Dict:
         """
-        Generates a dynamic trivia question based on match context.
+        Generates a dynamic trivia question adapted to fan difficulty.
         """
+        difficulty = "medium"
+        if fan_dna and "Legendary" in fan_dna.get('profile', ''):
+            difficulty = "hard"
+        elif fan_dna and "Rookie" in fan_dna.get('profile', ''):
+            difficulty = "easy"
+
         if not self.model:
             return {
                 "question": "Which player has the most sixes in IPL history?",
@@ -28,10 +34,11 @@ class TriviaAgent:
         You are a sports trivia master.
         Generate a multiple-choice trivia question about the player: {player}.
         
+        Difficulty Level: {difficulty}
+        
         Requirements:
         - 4 options.
         - 1 correct answer.
-        - Engaging and slightly challenging.
         - Return ONLY a JSON object with keys: "question", "options" (list), "answer".
         """
 

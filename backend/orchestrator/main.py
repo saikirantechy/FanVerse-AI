@@ -68,7 +68,7 @@ class AgentOrchestrator:
         # 8. Trivia Agent triggers interactive challenges
         trivia = None
         if "over" in event.get('description', '').lower() or event.get('type') == 'milestone':
-            trivia = self.trivia_agent.generate_trivia(match_context)
+            trivia = self.trivia_agent.generate_trivia(match_context, fan_dna)
 
         # 9. Narrative Agent creates the emotional arc
         storyline = self.narrative_agent.generate_storyline([], event) # Passing empty history for now
