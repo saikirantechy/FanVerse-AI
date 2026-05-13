@@ -6,6 +6,8 @@ from agents.insight_agent import InsightAgent
 from agents.social_agent import SocialAgent
 from agents.trivia_agent import TriviaAgent
 from agents.narrative_agent import NarrativeAgent
+from agents.behavior_agent import BehaviorAgent
+from agents.match_report_agent import MatchReportAgent
 from services.firestore_service import FirestoreService
 from typing import Dict
 
@@ -20,6 +22,8 @@ class AgentOrchestrator:
         self.social_agent = SocialAgent()
         self.trivia_agent = TriviaAgent()
         self.narrative_agent = NarrativeAgent()
+        self.behavior_agent = BehaviorAgent()
+        self.report_agent = MatchReportAgent()
         self.firestore = FirestoreService()
 
     def process_event(self, event_data: Dict, user_stats: Dict = None) -> Dict:
@@ -69,6 +73,16 @@ class AgentOrchestrator:
         # 9. Narrative Agent creates the emotional arc
         storyline = self.narrative_agent.generate_storyline([], event) # Passing empty history for now
 
+        # 10. Behavior Agent analyzes fan DNA
+        fan_dna = self.behavior_agent.analyze_fan_dna([event])
+
+        # 11. Match Report Agent triggers at end of match
+        final_report = None
+        fan_recap = None
+        if match_context.get('status') == 'completed':
+            final_report = self.report_agent.generate_final_report([], match_context.get('score'))
+            fan_recap = self.report_agent.generate_fan_recap(user_stats, [event])
+
         # 7. Firestore Sync - Push everything to the cloud for realtime frontend
         response_payload = {
             "commentary": commentary,
@@ -77,6 +91,9 @@ class AgentOrchestrator:
             "poll": poll,
             "trivia": trivia,
             "storyline": storyline,
+            "fan_dna": fan_dna,
+            "match_report": final_report,
+            "fan_recap": fan_recap,
             "strategic_insight": strategic_insight,
             "tactical_tip": tactical_tip,
             "social": {

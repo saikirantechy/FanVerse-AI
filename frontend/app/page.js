@@ -19,6 +19,10 @@ import LivePlayMode from '../components/LivePlayMode';
 import { motion, AnimatePresence } from 'framer-motion';
 import AchievementToast from '../components/AchievementToast';
 import ShareCardGenerator from '../components/ShareCardGenerator';
+import FanDNAProfile from '../components/FanDNAProfile';
+import FanRewardStore from '../components/FanRewardStore';
+import SeasonPassport from '../components/SeasonPassport';
+import ClanSystem from '../components/ClanSystem';
 import { useMatch } from '../hooks/useMatch';
 import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
 import { useState, useEffect } from 'react';
@@ -80,6 +84,7 @@ export default function Home() {
         {/* Left Column - User & Status (2.5 cols) */}
         <div className="lg:col-span-3 space-y-6">
           <ProfileCard />
+          <FanDNAProfile dna={liveData?.fan_dna} />
           <LivePlayMode isActive={isLivePlay} onToggle={() => setIsLivePlay(!isLivePlay)} />
           
           {/* Narrative Arc Section */}
@@ -98,7 +103,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <DailyChallenges />
+          <SeasonPassport />
           <AgentActivityPanel />
         </div>
 
@@ -189,8 +194,10 @@ export default function Home() {
           <MatchTimeline events={history} />
           <ShareCardGenerator matchData={matchData} storyline={storyline} />
           <CommentaryFeed events={events} />
+          <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
+          <ClanSystem />
           <AIChatPanel matchContext={matchData} />
         </div>
 
