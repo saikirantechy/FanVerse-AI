@@ -27,12 +27,14 @@ import CrowdPowerMeter from '../components/CrowdPowerMeter';
 import BroadcastTicker from '../components/BroadcastTicker';
 import AgentActivityMonitor from '../components/AgentActivityMonitor';
 import FanActivityFeed from '../components/FanActivityFeed';
+import SquadComparison from '../components/SquadComparison';
 import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import ClanMap from '../components/ClanMap';
 import MatchReportModal from '../components/MatchReportModal';
 import MatchStatsModal from '../components/MatchStatsModal';
+import LevelUpModal from '../components/LevelUpModal';
 import PredictionLeaderboard from '../components/PredictionLeaderboard';
 import ConfettiEffect from '../components/ConfettiEffect';
 import FlashEvent from '../components/FlashEvent';
@@ -51,6 +53,7 @@ export default function Home() {
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [isPredRankOpen, setIsPredRankOpen] = useState(false);
+  const [isLevelUpOpen, setIsLevelUpOpen] = useState(false);
 
   // Monitor for match completion
   useEffect(() => {
@@ -122,6 +125,11 @@ export default function Home() {
         isOpen={isPredRankOpen} 
         onClose={() => setIsPredRankOpen(false)} 
       />
+      <LevelUpModal 
+        isOpen={isLevelUpOpen} 
+        onClose={() => setIsLevelUpOpen(false)} 
+        level={15}
+      />
 
       <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
         
@@ -188,7 +196,10 @@ export default function Home() {
             <AICaptainConsensus insight={insight} />
           </div>
 
-          <OddsTracker momentum={momentum} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <OddsTracker momentum={momentum} />
+            <SquadComparison />
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="grid grid-cols-2 gap-6">
