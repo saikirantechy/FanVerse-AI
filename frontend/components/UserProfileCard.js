@@ -26,13 +26,19 @@ export default function UserProfileCard({ user, onEdit }) {
       <div className="px-8 pb-8 -mt-16 relative">
         <div className="flex flex-col md:flex-row md:items-end gap-6 mb-8">
           <div className="relative group">
-            <div className="w-32 h-32 rounded-full border-4 border-[#050505] overflow-hidden shadow-2xl">
+            <motion.div 
+              animate={user?.level >= 15 ? { 
+                boxShadow: ["0 0 20px rgba(6,182,212,0.1)", "0 0 40px rgba(6,182,212,0.4)", "0 0 20px rgba(6,182,212,0.1)"] 
+              } : {}}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="w-32 h-32 rounded-full border-4 border-[#050505] overflow-hidden shadow-2xl relative"
+            >
               <img 
                 src={user?.avatar || "https://api.dicebear.com/7.x/avataaars/svg?seed=Fan123"} 
                 alt="Profile" 
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
             <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-[#050505] rounded-full" />
           </div>
 

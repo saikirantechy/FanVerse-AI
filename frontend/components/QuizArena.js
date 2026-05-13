@@ -1,12 +1,24 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Brain, Timer, CheckCircle, XCircle } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 export default function QuizArena({ onComplete }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15);
   const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    if (showResult && score > 0) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#06b6d4', '#8b5cf6', '#ffffff']
+      });
+    }
+  }, [showResult]);
 
   const questions = [
     {
