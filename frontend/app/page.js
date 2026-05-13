@@ -36,6 +36,7 @@ import InteractionHeatmap from '../components/InteractionHeatmap';
 import TeamDynamics from '../components/TeamDynamics';
 import PressureGauge from '../components/PressureGauge';
 import FieldHeatmap from '../components/FieldHeatmap';
+import DramaMeter from '../components/DramaMeter';
 import MatchScript from '../components/MatchScript';
 import WeatherWidget from '../components/WeatherWidget';
 import MatchTempo from '../components/MatchTempo';
@@ -257,6 +258,7 @@ export default function Home() {
           <FanRewardStore />
           <CrowdEnergy energy={social.energy} viral={social.viral} />
           <PredictionPoll />
+          <DramaMeter value={Math.abs(momentum) > 30 ? 88 : 35} />
           <PressureGauge value={momentum < 0 ? 85 : 45} />
           <ConfidenceGauge />
           <div onClick={() => setIsPredRankOpen(true)} className="cursor-pointer">

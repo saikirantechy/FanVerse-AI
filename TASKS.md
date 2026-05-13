@@ -27,8 +27,12 @@
 * [ ] **QuestEngine** (Daily missions & rewards)
 
 ## 🎮 Immersive Fan Experience
-* [ ] **FanDNAProfile** (Visual AI watch personality)
-* [ ] **FanRewardStore** (Unlockable themes/avatars)
+- [x] **Theme System**: Dark/Light mode with persistence (Wave 15)
+- [x] **User Profile**: Personalization, banners, and XP tracking (Wave 16)
+- [x] **Badge System**: Achievement gallery with rarity tiers (Wave 18)
+- [x] **AI Avatar Engine**: Persona forge for fan identities (Wave 17)
+- [x] **Social Sharing**: Viral card generation and post hyping (Wave 19)
+- [ ] **Public Profiles**: Publicly shareable fan landing pages
 * [ ] **CrowdPowerMeter** (Live fan influence)
 * [ ] **Auto Story Generation** (Match end recap)
 
