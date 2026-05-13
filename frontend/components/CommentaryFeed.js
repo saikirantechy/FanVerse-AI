@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import AudioPulse from './AudioPulse';
 
 export default function CommentaryFeed({ events }) {
   const mockEvents = events || [
@@ -13,7 +14,7 @@ export default function CommentaryFeed({ events }) {
     <div className="glass-card flex flex-col h-[400px]">
       <div className="p-4 border-b border-white/10 flex justify-between items-center">
         <h3 className="font-bold uppercase tracking-wider text-sm flex items-center gap-2">
-          <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+          <AudioPulse isActive={true} />
           Live Commentary
         </h3>
       </div>
