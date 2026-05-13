@@ -33,6 +33,7 @@ import HighlightsPlayer from '../components/HighlightsPlayer';
 import AccuracyTracker from '../components/AccuracyTracker';
 import OddsTracker from '../components/OddsTracker';
 import InteractionHeatmap from '../components/InteractionHeatmap';
+import GlobalBroadcast from '../components/GlobalBroadcast';
 import ViralTimeline from '../components/ViralTimeline';
 import TeamDynamics from '../components/TeamDynamics';
 import PressureGauge from '../components/PressureGauge';
@@ -103,7 +104,11 @@ export default function Home() {
   const history = simulator.history;
 
   return (
-    <main className="min-h-screen pt-24 pb-24 px-6 relative bg-[#050505] overflow-hidden">
+    <main className="min-h-screen pt-32 pb-10 px-4 md:px-10 relative bg-[var(--background)] overflow-hidden transition-colors">
+      <GlobalBroadcast 
+        visible={social.energy > 85} 
+        message="Global Fan Energy Surge! ⚡" 
+      />
       <BackgroundParticles />
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
