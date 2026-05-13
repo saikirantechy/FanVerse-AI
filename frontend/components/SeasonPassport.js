@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 
 export default function SeasonPassport() {
   const milestones = [
-    { id: 1, title: 'Rookie', status: 'completed', icon: '🐣' },
-    { id: 2, title: 'Analyst', status: 'completed', icon: '📊' },
-    { id: 3, title: 'Strategist', status: 'active', icon: '🧠' },
-    { id: 4, title: 'Elite', status: 'locked', icon: '🎖️' },
-    { id: 5, title: 'Captain', status: 'locked', icon: '👑' },
+    { id: 1, title: 'Rookie', status: 'completed', icon: '🐣', reward: 'Starter Pack' },
+    { id: 2, title: 'Analyst', status: 'completed', icon: '📊', reward: 'Data Badge' },
+    { id: 3, title: 'Strategist', status: 'active', icon: '🧠', reward: 'AI Avatar' },
+    { id: 4, title: 'Elite', status: 'locked', icon: '🎖️', reward: 'Neon Theme' },
+    { id: 5, title: 'Captain', status: 'locked', icon: '👑', reward: 'Global Entry' },
+    { id: 6, title: 'Oracle', status: 'locked', icon: '🔮', reward: 'Beta Access' },
   ];
 
   return (
@@ -33,7 +34,7 @@ export default function SeasonPassport() {
         </div>
 
         {milestones.map((milestone, index) => (
-          <div key={milestone.id} className="relative z-10 flex flex-col items-center">
+          <div key={milestone.id} className="relative z-10 flex flex-col items-center group">
             <motion.div 
               whileHover={{ scale: 1.1 }}
               className={`w-10 h-10 rounded-full flex items-center justify-center text-sm border-2 transition-all ${
@@ -50,6 +51,9 @@ export default function SeasonPassport() {
               milestone.status === 'locked' ? 'text-gray-600' : 'text-gray-300'
             }`}>
               {milestone.title}
+            </span>
+            <span className="text-[6px] font-bold text-cyan-500/50 uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              {milestone.reward}
             </span>
           </div>
         ))}

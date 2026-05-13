@@ -18,12 +18,16 @@ import DailyChallenges from '../components/DailyChallenges';
 import LivePlayMode from '../components/LivePlayMode';
 import { motion, AnimatePresence } from 'framer-motion';
 import AchievementToast from '../components/AchievementToast';
-import ShareCardGenerator from '../components/ShareCardGenerator';
+import ViralHighlightGenerator from '../components/ViralHighlightGenerator';
 import FanDNAProfile from '../components/FanDNAProfile';
 import FanRewardStore from '../components/FanRewardStore';
 import SeasonPassport from '../components/SeasonPassport';
 import ClanSystem from '../components/ClanSystem';
 import CrowdPowerMeter from '../components/CrowdPowerMeter';
+import BroadcastTicker from '../components/BroadcastTicker';
+import AgentActivityMonitor from '../components/AgentActivityMonitor';
+import FanActivityFeed from '../components/FanActivityFeed';
+import MatchReportModal from '../components/MatchReportModal';
 import { useMatch } from '../hooks/useMatch';
 import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
 import { useState, useEffect } from 'react';
@@ -33,6 +37,14 @@ export default function Home() {
   const { data: liveData } = useFirestoreMatch("match_001");
   const [isLivePlay, setIsLivePlay] = useState(true);
   const [newAchievement, setNewAchievement] = useState(null);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+
+  // Monitor for match completion
+  useEffect(() => {
+    if (liveData?.match_status === 'completed') {
+      setIsReportOpen(true);
+    }
+  }, [liveData?.match_status]);
 
   // Monitor for new badges
   useEffect(() => {
@@ -79,6 +91,12 @@ export default function Home() {
 
       <Navbar />
       <AchievementToast achievement={newAchievement} />
+      <MatchReportModal 
+        isOpen={isReportOpen} 
+        onClose={() => setIsReportOpen(false)} 
+        report={liveData?.match_report}
+        fanRecap={liveData?.fan_recap}
+      />
 
       <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
         
@@ -105,7 +123,8 @@ export default function Home() {
           </motion.div>
 
           <SeasonPassport />
-          <AgentActivityPanel />
+          <FanActivityFeed />
+          <AgentActivityMonitor />
         </div>
 
         {/* Center Column - Main Action (6.5 cols) */}
@@ -193,7 +212,7 @@ export default function Home() {
         {/* Right Column - Social & Prediction (3 cols) */}
         <div className="lg:col-span-3 space-y-6">
           <MatchTimeline events={history} />
-          <ShareCardGenerator matchData={matchData} storyline={storyline} />
+          <ViralHighlightGenerator matchData={matchData} storyline={storyline} />
           <CommentaryFeed events={events} />
           <CrowdPowerMeter energy={social.energy} />
           <FanRewardStore />
@@ -206,6 +225,7 @@ export default function Home() {
       </div>
 
       <TickerRibbon />
+      <BroadcastTicker />
     </main>
   );
 }

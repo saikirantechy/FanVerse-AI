@@ -12,12 +12,12 @@ export default function Navbar() {
         </h1>
       </div>
 
-      <div className="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-        <a href="#" className="hover:text-white transition-colors text-white">Live Dashboard</a>
-        <a href="#" className="hover:text-white transition-colors">Squads</a>
-        <a href="#" className="hover:text-white transition-colors">Analysis</a>
-        <a href="#" className="hover:text-white transition-colors">Rewards</a>
-      </div>
+        <div className="hidden md:flex items-center gap-8">
+          <a href="/" className="text-[10px] font-black uppercase tracking-[0.2em] text-white hover:text-cyan-400 transition-colors">Match</a>
+          <a href="/leaderboard" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Arena</a>
+          <a href="/profile" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Profile</a>
+          <a href="#" className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-cyan-400 transition-colors">Market</a>
+        </div>
 
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full">
