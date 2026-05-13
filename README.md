@@ -307,3 +307,27 @@ This transforms sports viewing from:
 **Google Cloud — Build with AI (Agentic Premier League)**
 
 FanVerse AI represents the future of AI-native realtime sports engagement.
+
+---
+
+# 🌐 Connect & Community
+
+## Creator
+**Sai Kiran BK**
+
+## Social Profiles
+* **GitHub**: [https://github.com/saikirantechy](https://github.com/saikirantechy)
+* **LinkedIn**: [https://linkedin.com/in/saikirantech](https://linkedin.com/in/saikirantech)
+* **YouTube**: [https://youtube.com/saikirantech](https://youtube.com/saikirantech)
+* **Instagram**: [https://instagram.com/saikirantechy](https://instagram.com/saikirantechy)
+* **X / Twitter**: [https://x.com/saikirantechy](https://x.com/saikirantechy)
+
+## Community
+FanVerse AI is evolving into a community-powered realtime sports intelligence ecosystem. 
+
+**Future community features:**
+* Watch parties
+* Fan clans
+* Global leaderboards
+* AI fantasy assistant
+* Realtime sports communities
