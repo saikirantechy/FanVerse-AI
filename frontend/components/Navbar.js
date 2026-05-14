@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Cpu, Menu, X } from 'lucide-react';
+import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
@@ -20,21 +21,21 @@ export default function Navbar() {
       <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-accent-primary/30 to-transparent opacity-50" />
 
       <div className="flex items-center gap-6">
-        <a href="/" className="flex items-center gap-3 group cursor-pointer">
+        <Link href="/" className="flex items-center gap-3 group cursor-pointer">
           <div className="w-10 h-10 bg-accent-primary rounded-2xl flex items-center justify-center font-black italic text-black shadow-[0_0_20px_rgba(0,242,255,0.4)] group-hover:scale-110 transition-transform">
             FV
           </div>
           <h1 className="text-xl md:text-2xl font-black italic tracking-tighter uppercase text-foreground">
             Fan<span className="text-accent-primary">Verse</span> <span className="text-accent-secondary">AI</span>
           </h1>
-        </a>
+        </Link>
 
         <div className="hidden lg:flex items-center gap-8 ml-10">
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-accent-primary transition-colors relative group">
+            <Link key={link.href} href={link.href} className="text-[10px] font-black uppercase tracking-[0.2em] text-muted hover:text-accent-primary transition-colors relative group">
               {link.label}
               <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-accent-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -78,14 +79,14 @@ export default function Navbar() {
           >
             <div className="p-6 flex flex-col gap-4">
               {navLinks.map(link => (
-                <a 
+                <Link 
                   key={link.href} 
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="text-lg font-black uppercase italic text-foreground hover:text-accent-primary transition-colors py-2 border-b border-white/5"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="flex items-center gap-3 mt-4 px-4 py-3 bg-accent-secondary/10 border border-accent-secondary/20 rounded-2xl">
                 <Zap size={14} className="text-accent-secondary animate-pulse" />

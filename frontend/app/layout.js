@@ -1,5 +1,4 @@
 'use client';
-'use client';
 
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
@@ -10,40 +9,29 @@ import { motion, AnimatePresence } from "framer-motion";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
-import { useTheme } from "../hooks/useTheme";
-
 export default function RootLayout({ children }) {
-  const { theme } = useTheme();
-
   return (
-    <html lang="en" className={`${theme} scroll-smooth`}>
-      <body className={`${inter.variable} ${outfit.variable} font-sans bg-background text-foreground transition-colors duration-500 selection:bg-accent-primary/30`}>
-        {/* Global Scanning Line Effect */}
-        <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden opacity-20">
-          <motion.div 
-            animate={{ top: ['-10%', '110%'] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute left-0 right-0 h-[1px] bg-accent-primary/50 shadow-[0_0_15px_var(--accent)]"
-          />
-        </div>
-
+    <html lang="en" className="dark">
+      <body className={`${inter.variable} ${outfit.variable} font-sans bg-background text-foreground antialiased`}>
         <Navbar />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key="main-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
         
-        <main className="min-h-screen">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key="global-content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {children}
-            </motion.div>
-          </AnimatePresence>
-        </main>
-
-        <ThemeToggle />
+        {/* Global Cinematic Background */}
+        <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-background">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-primary/5 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent-secondary/5 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+        </div>
       </body>
     </html>
   );
