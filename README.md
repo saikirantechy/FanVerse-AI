@@ -5,6 +5,11 @@
 
 ---
 
+## 🌐 Live Demo
+👉 **[FanVerse AI Live Showcase](https://saikirantechy.github.io/FanVerse-AI/)**
+
+---
+
 # 🚀 Overview
 
 FanVerse AI is a next-generation AI-native sports engagement platform that transforms passive viewers into interactive participants through:
