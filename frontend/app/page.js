@@ -1,263 +1,129 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useMatch } from '../hooks/useMatch';
-import { useFirestoreMatch } from '../hooks/useFirestoreMatch';
-import { useTheme } from '../hooks/useTheme';
-
-// UI Components
-import DashboardTabs from '../components/DashboardTabs';
-import QuizArena from '../components/QuizArena';
-import MatchArchive from '../components/MatchArchive';
-import ReputationLeaderboard from '../components/ReputationLeaderboard';
-import LiveScoreCard from '../components/LiveScoreCard';
-import MomentumMeter from '../components/MomentumMeter';
-import AICaptainConsensus from '../components/AICaptainConsensus';
-import OddsTracker from '../components/OddsTracker';
-import SquadComparison from '../components/SquadComparison';
-import FieldHeatmap from '../components/FieldHeatmap';
-import TeamDynamics from '../components/TeamDynamics';
-import PredictionPoll from '../components/PredictionPoll';
-import CommentaryFeed from '../components/CommentaryFeed';
-import MatchTimeline from '../components/MatchTimeline';
-import AgentFlowDiagram from '../components/AgentFlowDiagram';
-import ViralTimeline from '../components/ViralTimeline';
-import HighlightsPlayer from '../components/HighlightsPlayer';
-import InteractionHeatmap from '../components/InteractionHeatmap';
-import CrowdPowerMeter from '../components/CrowdPowerMeter';
-import ClanSystem from '../components/ClanSystem';
-import FanRewardStore from '../components/FanRewardStore';
-import SeasonPassport from '../components/SeasonPassport';
-import DailyChallenges from '../components/DailyChallenges';
-import ProfileCard from '../components/ProfileCard';
-import FanDNAProfile from '../components/FanDNAProfile';
-import LivePlayMode from '../components/LivePlayMode';
-import MatchScript from '../components/MatchScript';
-import AgentActivityMonitor from '../components/AgentActivityMonitor';
-import BehaviorFeedback from '../components/BehaviorFeedback';
-
-// Global UI
-import GlobalBroadcast from '../components/GlobalBroadcast';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import BackgroundParticles from '../components/BackgroundParticles';
-import TickerRibbon from '../components/TickerRibbon';
-import BroadcastTicker from '../components/BroadcastTicker';
-import ChatFAB from '../components/ChatFAB';
-import CheerButton from '../components/CheerButton';
-import InsightPopup from '../components/InsightPopup';
-import XPPulse from '../components/XPPulse';
-import ConfettiEffect from '../components/ConfettiEffect';
-import AchievementToast from '../components/AchievementToast';
-import MatchReportModal from '../components/MatchReportModal';
-import MatchStatsModal from '../components/MatchStatsModal';
-import LevelUpModal from '../components/LevelUpModal';
-import PredictionLeaderboard from '../components/PredictionLeaderboard';
-import MatchStatusBadges from '../components/MatchStatusBadges';
+import { Cpu, Zap, Trophy, Brain, Target, Share2, Users, Database } from 'lucide-react';
+import GlassCard from '../components/ui/GlassCard';
+import NeonButton from '../components/ui/NeonButton';
+import LiveBadge from '../components/ui/LiveBadge';
 
-export default function Home() {
-  const simulator = useMatch();
-  const { data: liveData } = useFirestoreMatch("match_001");
-  const { theme } = useTheme();
-  
-  const [activeTab, setActiveTab] = useState('live');
-  const [isLivePlay, setIsLivePlay] = useState(true);
-  const [newAchievement, setNewAchievement] = useState(null);
-  const [isReportOpen, setIsReportOpen] = useState(false);
-  const [isStatsOpen, setIsStatsOpen] = useState(false);
-  const [isPredRankOpen, setIsPredRankOpen] = useState(false);
-  const [isLevelUpOpen, setIsLevelUpOpen] = useState(false);
-
-  // Monitor for match completion
-  useEffect(() => {
-    if (liveData?.match_status === 'completed') {
-      setIsReportOpen(true);
-      setTimeout(() => setIsLevelUpOpen(true), 3000);
-    }
-  }, [liveData?.match_status]);
-
-  // Monitor for new badges
-  useEffect(() => {
-    if (liveData?.engagement?.new_badges?.length > 0) {
-      setNewAchievement(liveData.engagement.new_badges[0]);
-    }
-  }, [liveData?.engagement?.new_badges]);
-
-  // Data Merging Logic
-  const matchData = liveData?.score ? { 
-    ...simulator.matchData, 
-    team1: { ...simulator.matchData.team1, score: liveData.score.split(' ')[0] },
-    overs: liveData.overs,
-    status: liveData.match_status
-  } : simulator.matchData;
-
-  const momentum = liveData?.win_probability !== undefined ? (liveData.win_probability > 50 ? 30 : -30) : simulator.momentum;
-  const events = liveData?.commentary ? [liveData.commentary, ...simulator.events].slice(0, 5) : simulator.events;
-  const insight = liveData?.strategic_insight || simulator.insight;
-  const matchCompleted = liveData?.match_status === 'completed' || matchData.overs >= 20;
-  
-  const storyline = matchCompleted ? [
-    "The match reached a fever pitch as the final overs approached...",
-    "A series of high-impact boundaries shifted the momentum decisively...",
-    "The final delivery sealed a historic victory.",
-    "FanVerse AI Analysis: 92% efficiency rating."
-  ] : (liveData?.storyline || "The stage is set for a historic finish.");
-
-  const social = liveData?.social || simulator.social;
-  const agentDecision = liveData?.match_status ? `NarrativeAgent: Building emotional arc...` : simulator.agentDecision;
-  const activePoll = liveData?.poll || simulator.activePoll;
-  const flash = simulator.flash;
-  const history = simulator.history;
-
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case 'live':
-        return (
-          <div className="space-y-6">
-            <div onClick={() => setIsStatsOpen(true)} className="cursor-pointer group">
-              <LiveScoreCard matchData={matchData} />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <MomentumMeter value={momentum} />
-              <AICaptainConsensus insight={insight} />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <OddsTracker momentum={momentum} />
-              <SquadComparison />
-              <FieldHeatmap />
-              <TeamDynamics />
-            </div>
-            <PredictionPoll />
-          </div>
-        );
-      case 'commentary':
-        return (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <CommentaryFeed events={events} />
-            <MatchTimeline events={history} />
-            <div className="lg:col-span-2">
-              <AgentFlowDiagram />
-            </div>
-          </div>
-        );
-      case 'quiz':
-        return <QuizArena onComplete={(score) => console.log('Quiz Score:', score)} />;
-      case 'leaderboard':
-        return (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <PredictionLeaderboard isOpen={true} onClose={() => {}} inline={true} />
-            <ReputationLeaderboard />
-          </div>
-        );
-      case 'tactical':
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <DramaMeter value={Math.abs(momentum) > 30 ? 88 : 35} />
-            <PressureGauge value={momentum < 0 ? 85 : 45} />
-            <ClutchFactor value={momentum < -20 ? 94 : 78} />
-            <ConfidenceGauge />
-          </div>
-        );
-      case 'social':
-        return (
-          <div className="space-y-6">
-            <ViralTimeline />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <HighlightsPlayer />
-              <InteractionHeatmap />
-            </div>
-            <CrowdPowerMeter energy={social.energy} />
-          </div>
-        );
-      case 'clans':
-        return <ClanSystem />;
-      case 'archive':
-        return <MatchArchive />;
-      case 'rewards':
-        return (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <FanRewardStore />
-            <SeasonPassport />
-            <DailyChallenges />
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+export default function LandingPage() {
+  const features = [
+    { icon: Brain, title: "Multi-Agent Intelligence", desc: "11 autonomous agents collaborating in realtime to orchestrate your experience." },
+    { icon: Zap, title: "Momentum Analytics", desc: "Live energy tracking and pressure gauges powered by Google Cloud & Gemini." },
+    { icon: Trophy, title: "Arena Progression", desc: "Climb from Rookie to Legend through tactical quizzes and clan rivalries." },
+    { icon: Target, title: "Predictive Gaming", desc: "Smart prediction economy with virtual coin rewards and seasonal leaderboards." },
+    { icon: Share2, title: "Identity Forge", desc: "AI-generated fan personas and shareable identity cards for the metaverse." },
+    { icon: Database, title: "Historical Archive", desc: "Relive historic matches with AI commentary and tactical post-match recaps." },
+  ];
 
   return (
-    <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 relative bg-background overflow-hidden transition-colors duration-500">
-      <GlobalBroadcast visible={social.energy > 85} message="Global Fan Energy Surge! ⚡" />
+    <main className="min-h-screen bg-background relative overflow-hidden">
       <BackgroundParticles />
-      <TickerRibbon />
       
-      {/* Dynamic Background Glows */}
-      <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-accent-primary/10 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-accent-secondary/10 rounded-full blur-[150px] pointer-events-none -z-10" />
+      {/* Background Cinematic Glows */}
+      <div className="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-accent-primary/15 rounded-full blur-[150px] animate-pulse pointer-events-none" />
+      <div className="fixed bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent-secondary/15 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
 
-      {/* Global Modals & Toasts */}
-      <XPPulse xp={liveData?.engagement?.xp_earned || (matchData.overs % 1 === 0 ? 100 : 0)} />
-      <ConfettiEffect trigger={newAchievement} />
-      <AchievementToast achievement={newAchievement} />
-      
-      <MatchReportModal isOpen={isReportOpen} onClose={() => setIsReportOpen(false)} report={liveData?.match_report} storyline={storyline} />
-      <MatchStatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} matchData={matchData} />
-      <LevelUpModal isOpen={isLevelUpOpen} onClose={() => setIsLevelUpOpen(false)} level={15} />
-
-      <div className="max-w-[1800px] mx-auto relative z-10">
-        <DashboardTabs activeTab={activeTab} onTabChange={setActiveTab} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Fixed Sidebar - Identity & Status (3 cols) */}
-          <div className="lg:col-span-3 space-y-6 hidden lg:block">
-            <ProfileCard />
-            <FanDNAProfile dna={liveData?.fan_dna} />
-            <LivePlayMode isActive={isLivePlay} onToggle={() => setIsLivePlay(!isLivePlay)} />
-            <MatchScript storyline={storyline} />
-            <AgentActivityMonitor />
-            <BehaviorFeedback />
+      {/* Hero Section */}
+      <section className="relative pt-40 pb-24 px-6 md:px-10 max-w-7xl mx-auto z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center space-y-8"
+        >
+          <div className="flex justify-center">
+            <LiveBadge text="AGENTIC METAVERSE ACTIVE" />
           </div>
+          
+          <h1 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-tight text-foreground">
+            The AI Powered <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-accent-secondary to-pink-500">
+              Sports Metaverse
+            </span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-muted max-w-3xl mx-auto leading-relaxed">
+            FanVerse AI transforms passive viewing into a cinematic, AI-orchestrated interactive experience. Join thousands of fans in the world's first agentic sports ecosystem.
+          </p>
 
-          {/* Main Content Area (9 cols) */}
-          <div className="lg:col-span-9">
-            <div className="mb-6 flex justify-between items-center px-6 py-3 bg-accent-primary/5 border border-accent-primary/10 rounded-2xl">
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
-                </span>
-                <span className="text-[10px] font-black uppercase tracking-widest text-accent-primary">Status:</span>
-                <motion.span key={agentDecision} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] font-medium text-muted italic">
-                  {agentDecision}
-                </motion.span>
-              </div>
-              <div className="flex items-center gap-6">
-                <MatchStatusBadges overs={matchData.overs} status={matchData.status} />
-                <span className="text-[10px] font-bold text-muted uppercase tracking-widest">
-                  <span className="text-accent-primary font-black italic">{Math.floor(128000 + Math.random() * 5000).toLocaleString()}</span> active fans
-                </span>
-              </div>
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                {renderTabContent()}
-              </motion.div>
-            </AnimatePresence>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 pt-8">
+            <Link href="/live">
+              <NeonButton variant="primary" className="px-12 py-6 text-sm">
+                Enter Live Arena
+              </NeonButton>
+            </Link>
+            <Link href="/about">
+              <button className="px-12 py-5 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-white uppercase italic tracking-widest hover:bg-white/10 transition-all">
+                View Architecture
+              </button>
+            </Link>
           </div>
+        </motion.div>
+      </section>
+
+      {/* Feature Grid */}
+      <section className="py-24 px-6 md:px-10 max-w-7xl mx-auto z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <GlassCard className="p-10 h-full border-white/5 hover:border-accent-primary/30 transition-all group">
+                <f.icon className="w-10 h-10 text-accent-primary mb-6 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-black uppercase italic text-foreground mb-4">{f.title}</h3>
+                <p className="text-sm text-muted leading-relaxed">{f.desc}</p>
+              </GlassCard>
+            </motion.div>
+          ))}
         </div>
-      </div>
+      </section>
 
-      <BroadcastTicker />
-      <ChatFAB matchContext={matchData} />
-      <CheerButton onCheer={() => simulator.boostEnergy(15)} />
-      <InsightPopup />
+      {/* Tech Stack / Orchestration Section */}
+      <section className="py-24 px-6 md:px-10 max-w-7xl mx-auto z-10 bg-accent-primary/5 rounded-[4rem] border border-accent-primary/10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-black italic uppercase text-foreground mb-4">
+            Orchestrated by <span className="text-accent-primary">Agents</span>
+          </h2>
+          <p className="text-muted text-sm uppercase tracking-[0.3em] font-black">Multi-Agent Intelligence Flow</p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {["MatchAgent", "CommentaryAgent", "PredictionAgent", "SocialAgent", "InsightAgent", "BehaviorAgent", "TriviaAgent", "EngagementAgent", "NarrativeAgent", "RecommendationAgent"].map((agent, i) => (
+            <div key={agent} className="px-6 py-4 bg-black/40 border border-white/5 rounded-2xl flex flex-col items-center justify-center gap-3">
+              <Cpu size={16} className="text-accent-secondary" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-foreground/80">{agent}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Social / Join CTA */}
+      <section className="py-32 px-6 md:px-10 text-center z-10">
+        <h2 className="text-4xl md:text-6xl font-black italic uppercase text-foreground mb-12">
+          Ready to Claim Your <span className="text-accent-secondary">Legacy</span>?
+        </h2>
+        <Link href="/live">
+          <button className="group relative px-16 py-8 bg-accent-primary text-black font-black uppercase italic tracking-tighter text-2xl rounded-3xl overflow-hidden hover:scale-105 transition-all">
+            <span className="relative z-10">Join the FanVerse</span>
+            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-white/50" />
+          </button>
+        </Link>
+        <p className="mt-8 text-[10px] font-black text-muted uppercase tracking-[0.4em]">
+          Powered by Gemini Pro & Google Cloud
+        </p>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-border text-center text-[10px] font-black text-muted uppercase tracking-widest opacity-50">
+        &copy; 2026 FanVerse AI Sports Metaverse. All rights reserved.
+      </footer>
     </main>
   );
 }

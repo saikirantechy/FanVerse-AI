@@ -6,13 +6,7 @@ const MOCK_EVENTS = [
   { 
     id: 1, 
     type: 'start', 
-    matchData: { 
-      team1: { name: 'RCB', score: '185/4' }, 
-      team2: { name: 'CSK', score: '142/3' }, 
-      overs: '15.0', 
-      target: '186', 
-      status: 'CSK need 44 runs in 30 balls' 
-    },
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '142/3' }, overs: '15.0', target: '186', status: 'CSK need 44 runs in 30 balls' },
     momentum: 30,
     commentary: { id: 101, time: '15.0', text: 'Start of the 16th over. Siraj into the attack.', type: 'normal' },
     insight: 'Match Balance: RCB currently have a 68% win probability, but Dhoni is still at the crease.',
@@ -21,13 +15,7 @@ const MOCK_EVENTS = [
   { 
     id: 2, 
     type: 'ball', 
-    matchData: { 
-      team1: { name: 'RCB', score: '185/4' }, 
-      team2: { name: 'CSK', score: '143/3' }, 
-      overs: '15.1', 
-      target: '186', 
-      status: 'CSK need 43 runs in 29 balls' 
-    },
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '143/3' }, overs: '15.1', target: '186', status: 'CSK need 43 runs in 29 balls' },
     momentum: 28,
     commentary: { id: 102, time: '15.1', text: 'Single to long-on. Dhoni off the mark in this over.', type: 'normal' },
     insight: 'Strategic Note: Strike rotation is crucial. CSK need to keep the scoreboard ticking.',
@@ -36,14 +24,8 @@ const MOCK_EVENTS = [
   { 
     id: 3, 
     type: 'six', 
-    matchData: { 
-      team1: { name: 'RCB', score: '185/4' }, 
-      team2: { name: 'CSK', score: '149/3' }, 
-      overs: '15.2', 
-      target: '186', 
-      status: 'CSK need 37 runs in 28 balls' 
-    },
-    momentum: -20, // Momentum shift to CSK
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '149/3' }, overs: '15.2', target: '186', status: 'CSK need 37 runs in 28 balls' },
+    momentum: -20, 
     commentary: { id: 103, time: '15.2', text: 'SIX! SHIVAM DUBE SMOKES IT! Over the cow corner. That is massive.', type: 'boundary' },
     triggerPoll: true,
     insight: 'TURNING POINT: That six puts the pressure back on Siraj. The required rate drops below 10.',
@@ -52,18 +34,38 @@ const MOCK_EVENTS = [
   { 
     id: 4, 
     type: 'wicket', 
-    matchData: { 
-      team1: { name: 'RCB', score: '185/4' }, 
-      team2: { name: 'CSK', score: '149/4' }, 
-      overs: '15.3', 
-      target: '186', 
-      status: 'CSK need 37 runs in 27 balls' 
-    },
-    momentum: 60, // Huge momentum shift to RCB
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '149/4' }, overs: '15.3', target: '186', status: 'CSK need 37 runs in 27 balls' },
+    momentum: 60,
     commentary: { id: 104, time: '15.3', text: 'OUT! SIRAJ STRIKES BACK! Dube holing out to Kohli at long-off. Silence in the CSK camp!', type: 'wicket' },
-    leaderboardUpdate: true,
     insight: 'CRITICAL EVENT: The set batsman is gone. RCB are now firm favorites to win.',
     social: { energy: 90, viral: true }
+  },
+  { 
+    id: 5, 
+    type: 'milestone', 
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '155/4' }, overs: '16.0', target: '186', status: 'CSK need 31 runs in 24 balls' },
+    momentum: 10,
+    commentary: { id: 105, time: '16.0', text: 'End of the over. 12 runs from it. Game on!', type: 'normal' },
+    insight: 'AI Analysis: Dhoni is looking for the death overs explosion. Impact rating: 88.',
+    social: { energy: 75, viral: false }
+  },
+  { 
+    id: 6, 
+    type: 'four', 
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '175/4' }, overs: '18.4', target: '186', status: 'CSK need 11 runs in 8 balls' },
+    momentum: -45,
+    commentary: { id: 106, time: '18.4', text: 'FOUR! DHONI CLASSIC! Deep backward square leg finds the boundary.', type: 'boundary' },
+    insight: 'INTENSITY ALERT: Highest pressure moment detected. Crowd volume peaking.',
+    social: { energy: 100, viral: true }
+  },
+  { 
+    id: 7, 
+    type: 'finish', 
+    matchData: { team1: { name: 'RCB', score: '185/4' }, team2: { name: 'CSK', score: '188/4' }, overs: '19.5', target: '186', status: 'CSK WON BY 6 WICKETS' },
+    momentum: -100,
+    commentary: { id: 107, time: '19.5', text: 'SIX! HE FINISHES IT IN STYLE! Dhoni seals the victory for CSK!', type: 'boundary' },
+    insight: 'MATCH OVER: A historic chase orchestrated by tactical brilliance.',
+    social: { energy: 100, viral: true }
   }
 ];
 
