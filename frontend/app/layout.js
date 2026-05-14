@@ -3,6 +3,7 @@
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import ThemeToggle from "../components/ThemeToggle";
+import LoadingScreen from "../components/effects/LoadingScreen";
 import { Inter, Outfit } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${outfit.variable} font-sans bg-background text-foreground antialiased`}>
+        <LoadingScreen />
         <Navbar />
         <AnimatePresence mode="wait">
           <motion.div
