@@ -102,6 +102,4 @@ export default function ArenaPage() {
     </main>
   );
 }
-    </main>
-  );
-}
+

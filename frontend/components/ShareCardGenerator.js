@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Share2, Download, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Share2, Download, Camera, Send, Globe } from 'lucide-react';
 
 export default function ShareCardGenerator({ type, data }) {
   const templates = {
@@ -57,11 +57,11 @@ export default function ShareCardGenerator({ type, data }) {
         <div className="space-y-8 flex flex-col justify-center">
           <div className="grid grid-cols-2 gap-4">
             <button className="flex flex-col items-center gap-3 p-6 bg-white/5 border border-white/5 rounded-3xl hover:bg-white/10 transition-all group">
-              <Instagram className="text-pink-500 group-hover:scale-110 transition-transform" />
+              <Camera className="text-pink-500 group-hover:scale-110 transition-transform" />
               <span className="text-[8px] font-black uppercase text-gray-500 tracking-widest">Instagram Story</span>
             </button>
             <button className="flex flex-col items-center gap-3 p-6 bg-white/5 border border-white/5 rounded-3xl hover:bg-white/10 transition-all group">
-              <Twitter className="text-blue-400 group-hover:scale-110 transition-transform" />
+              <Send className="text-blue-400 group-hover:scale-110 transition-transform" />
               <span className="text-[8px] font-black uppercase text-gray-500 tracking-widest">Twitter Post</span>
             </button>
           </div>

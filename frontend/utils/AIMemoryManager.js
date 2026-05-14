@@ -1,5 +1,7 @@
 export const AIMemoryManager = {
   saveReaction: (type, context) => {
+    if (typeof window === 'undefined') return [];
+    
     const memory = JSON.parse(localStorage.getItem('fanverse-memory') || '[]');
     const newEntry = {
       timestamp: new Date().toISOString(),
@@ -17,6 +19,8 @@ export const AIMemoryManager = {
   },
 
   getDominantStyle: () => {
+    if (typeof window === 'undefined') return 'Neutral';
+    
     const memory = JSON.parse(localStorage.getItem('fanverse-memory') || '[]');
     if (memory.length === 0) return 'Neutral';
     
@@ -37,5 +41,34 @@ export const AIMemoryManager = {
       'Trivia': 'The fan values historical accuracy and knowledge.'
     };
     return map[style] || 'The fan is exploring the platform.';
+  },
+
+  getProfileData: () => {
+    const defaultProfile = {
+      username: "CricketOracle_99",
+      level: 15,
+      xp: 450,
+      accuracy: "88%",
+      team: "RCB",
+      achievements: 12,
+      prestige: false,
+      bio: "AI Sports Analyst & Die-hard Cricket Fan. Predicting the future of the game, one ball at a time."
+    };
+    
+    if (typeof window === 'undefined') return defaultProfile;
+    
+    const stored = localStorage.getItem('fanverse-profile');
+    return stored ? JSON.parse(stored) : defaultProfile;
+  },
+
+  updateProfileData: (data) => {
+    if (typeof window === 'undefined') return data;
+    
+    const current = AIMemoryManager.getProfileData();
+    const updated = { ...current, ...data };
+    localStorage.setItem('fanverse-profile', JSON.stringify(updated));
+    return updated;
   }
 };
+
+

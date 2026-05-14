@@ -4,18 +4,33 @@ import PublicProfileCard from '../../../components/PublicProfileCard';
 import BadgeGallery from '../../../components/BadgeGallery';
 import BackgroundParticles from '../../../components/BackgroundParticles';
 import { useParams } from 'next/navigation';
+import { AIMemoryManager } from '../../../utils/AIMemoryManager';
+import { useState, useEffect } from 'react';
 
 export default function PublicProfilePage() {
   const { username } = useParams();
+  const [user, setUser] = useState(null);
 
-  const mockUser = {
-    username: username || "CricketOracle_99",
-    level: 42,
-    accuracy: "94%",
-    team: "RCB",
-    achievements: 24,
-    prestige: true
-  };
+  useEffect(() => {
+    const data = AIMemoryManager.getProfileData();
+    // If the username matches the current user, use their data, otherwise mock it for other profiles
+    if (username && username.toLowerCase() === data.username.toLowerCase()) {
+      setUser(data);
+    } else {
+      setUser({
+        username: username || "CricketOracle_99",
+        level: 42,
+        accuracy: "94%",
+        team: "RCB",
+        achievements: 24,
+        prestige: true,
+        bio: "AI Sports Analyst & Die-hard Cricket Fan."
+      });
+    }
+  }, [username]);
+
+  if (!user) return null;
+
 
   return (
     <main className="min-h-screen pt-32 pb-24 px-6 relative bg-[var(--background)] overflow-hidden">
@@ -31,7 +46,7 @@ export default function PublicProfilePage() {
           <p className="text-gray-400 text-sm max-w-lg mx-auto">This fan identity is verified on the FanVerse AI Sports Metaverse. Accuracy and achievements are processed by agentic AI models.</p>
         </div>
 
-        <PublicProfileCard user={mockUser} />
+        <PublicProfileCard user={user} />
         
         <div className="max-w-4xl mx-auto">
           <BadgeGallery />

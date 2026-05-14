@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import MatchRecapStory from './MatchRecapStory';
 
-export default function MatchReportModal({ isOpen, onClose, report, fanRecap }) {
+export default function MatchReportModal({ isOpen, onClose, report, fanRecap, storyline }) {
   if (!isOpen) return null;
 
   return (
@@ -10,7 +11,7 @@ export default function MatchReportModal({ isOpen, onClose, report, fanRecap }) 
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="w-full max-w-2xl bg-black border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(6,182,212,0.2)]"
+          className="w-full max-w-4xl bg-black border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(6,182,212,0.2)]"
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-cyan-600 to-purple-600 p-8 flex justify-between items-start">
@@ -24,13 +25,17 @@ export default function MatchReportModal({ isOpen, onClose, report, fanRecap }) 
           </div>
 
           <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
+            {/* Cinematic Recap Story */}
+            <MatchRecapStory storyline={storyline} />
+
             {/* Tactical Review */}
-            <section>
-              <h3 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-4">Tactical Review</h3>
-              <div className="text-lg font-medium text-gray-200 leading-relaxed italic">
+            <section className="px-2">
+              <h3 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-4">AI Tactical Deep-Dive</h3>
+              <div className="text-sm font-medium text-gray-300 leading-relaxed italic">
                 {report || "The game shifted when the spinners were introduced in the 12th over. CSK's defensive lines proved too much for RCB's middle order..."}
               </div>
             </section>
+
 
             {/* Fan Journey Recap */}
             <section className="p-6 bg-white/5 rounded-2xl border border-white/5 relative overflow-hidden">

@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 
 export default function BroadcastTicker() {
@@ -11,37 +13,37 @@ export default function BroadcastTicker() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-black/90 backdrop-blur-md border-t border-cyan-500/30 z-50 overflow-hidden h-10 flex items-center">
-      <div className="bg-cyan-500 text-black px-4 h-full flex items-center font-black italic text-xs uppercase tracking-tighter skew-x-[-20deg] -ml-2 z-10">
-        <span className="skew-x-[20deg]">LIVE TICKER</span>
+    <div className="fixed bottom-0 left-0 w-full bg-background/90 backdrop-blur-xl border-t border-border z-[100] overflow-hidden h-12 flex items-center shadow-[0_-10px_30px_rgba(0,0,0,0.2)]">
+      <div className="bg-accent-primary text-black px-6 h-full flex items-center font-black italic text-[10px] uppercase tracking-tighter skew-x-[-20deg] -ml-3 z-10">
+        <span className="skew-x-[20deg]">LIVE FEED</span>
       </div>
       
       <div className="flex-1 overflow-hidden relative">
         <motion.div 
-          animate={{ x: [0, -2000] }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          className="flex whitespace-nowrap gap-12 items-center pl-8"
+          animate={{ x: [0, -1500] }}
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+          className="flex whitespace-nowrap gap-16 items-center pl-10"
         >
           {news.map((item, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{item}</span>
-              <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full" />
+            <div key={i} className="flex items-center gap-6">
+              <span className="text-[10px] font-black text-foreground uppercase tracking-widest italic">{item}</span>
+              <span className="w-1.5 h-1.5 bg-accent-primary rounded-full shadow-[0_0_8px_var(--accent)]" />
             </div>
           ))}
-          {/* Duplicate for seamless loop */}
           {news.map((item, i) => (
-            <div key={`dup-${i}`} className="flex items-center gap-4">
-              <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{item}</span>
-              <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full" />
+            <div key={`dup-${i}`} className="flex items-center gap-6">
+              <span className="text-[10px] font-black text-foreground uppercase tracking-widest italic">{item}</span>
+              <span className="w-1.5 h-1.5 bg-accent-primary rounded-full shadow-[0_0_8px_var(--accent)]" />
             </div>
           ))}
         </motion.div>
       </div>
 
-      <div className="bg-black px-6 h-full flex items-center gap-4 border-l border-white/10">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-          <span className="text-[10px] font-black text-white uppercase tracking-widest">128K WATCHING</span>
+      <div className="bg-card px-8 h-full flex items-center gap-6 border-l border-border relative">
+        <div className="absolute top-0 bottom-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-accent-primary/20 to-transparent" />
+        <div className="flex items-center gap-3">
+          <div className="w-2 h-2 bg-red-600 rounded-full animate-ping" />
+          <span className="text-[10px] font-black text-foreground uppercase tracking-[0.2em]">128,420 <span className="text-muted">FANS</span></span>
         </div>
       </div>
     </div>

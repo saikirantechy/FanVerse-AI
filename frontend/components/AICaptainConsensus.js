@@ -1,5 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import GlassCard from './ui/GlassCard';
 
 export default function AICaptainConsensus({ insight }) {
   const [voted, setVoted] = useState(false);
@@ -7,14 +10,17 @@ export default function AICaptainConsensus({ insight }) {
   if (!insight) return null;
 
   return (
-    <div className="glass-card p-6 border-blue-500/30 bg-blue-500/5 relative overflow-hidden">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">Digital Captain Consensus</h3>
-        <div className="text-[8px] font-black text-gray-500 uppercase tracking-widest">LIVE VOTE</div>
+    <GlassCard className="p-8 border-accent-primary/20">
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-[10px] font-black text-accent-primary uppercase tracking-[0.3em]">Digital Captain Consensus</h3>
+        <div className="px-3 py-1 bg-accent-primary/10 rounded-full border border-accent-primary/20 text-[8px] font-black text-accent-primary uppercase tracking-widest animate-pulse">
+          LIVE VOTE
+        </div>
       </div>
 
-      <div className="bg-black/40 p-4 rounded-xl border border-white/5 mb-6">
-        <p className="text-xs text-blue-100 italic leading-relaxed">
+      <div className="bg-black/20 dark:bg-black/40 p-5 rounded-2xl border border-border mb-8 relative group overflow-hidden">
+        <div className="absolute top-0 left-0 w-1 h-full bg-accent-primary" />
+        <p className="text-sm text-foreground italic leading-relaxed pl-2">
           "{insight}"
         </p>
       </div>
@@ -23,37 +29,46 @@ export default function AICaptainConsensus({ insight }) {
         <div className="grid grid-cols-2 gap-4">
           <button 
             onClick={() => setVoted(true)}
-            className="py-3 bg-blue-500 text-black font-black uppercase italic tracking-widest rounded-xl hover:bg-blue-400 transition-colors text-[10px]"
+            className="py-4 bg-accent-primary text-black font-black uppercase italic tracking-widest rounded-2xl hover:bg-accent-primary/90 transition-all text-[10px] shadow-lg active:scale-95"
           >
             Agree with Captain
           </button>
           <button 
             onClick={() => setVoted(true)}
-            className="py-3 bg-white/5 border border-white/10 text-white font-black uppercase italic tracking-widest rounded-xl hover:bg-white/10 transition-colors text-[10px]"
+            className="py-4 bg-card border border-border text-foreground font-black uppercase italic tracking-widest rounded-2xl hover:bg-white/5 transition-all text-[10px] active:scale-95"
           >
             Disagree
           </button>
         </div>
       ) : (
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-2"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="space-y-4"
         >
-          <div className="flex justify-between text-[8px] font-black uppercase text-gray-500">
-            <span>Community Agreement</span>
-            <span>84%</span>
+          <div className="flex justify-between items-end">
+            <div>
+              <p className="text-[10px] font-black text-muted uppercase tracking-widest mb-1">Global Sentiment</p>
+              <p className="text-2xl font-black text-accent-primary italic">84% AGREEMENT</p>
+            </div>
+            <div className="text-right">
+              <p className="text-[8px] font-black text-gray-500 uppercase">Confidence Score</p>
+              <p className="text-xs font-black text-foreground">HIGH</p>
+            </div>
           </div>
-          <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+          <div className="h-2 w-full bg-white/5 dark:bg-black/20 rounded-full overflow-hidden border border-border">
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: '84%' }}
-              className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+              className="h-full bg-accent-primary shadow-[0_0_20px_rgba(0,242,255,0.4)]"
             />
           </div>
-          <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest mt-2">Vote registered! +50 XP earned.</p>
+          <div className="flex items-center gap-2 px-4 py-2 bg-accent-primary/10 rounded-xl border border-accent-primary/20">
+            <span className="w-1.5 h-1.5 bg-accent-primary rounded-full animate-ping" />
+            <p className="text-[10px] font-black text-accent-primary uppercase tracking-widest">Vote registered! +50 XP earned.</p>
+          </div>
         </motion.div>
       )}
-    </div>
+    </GlassCard>
   );
 }

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Twitter, Send, Copy, RefreshCw } from 'lucide-react';
+import { Send, Copy, RefreshCw } from 'lucide-react';
 
 export default function FanPostGenerator() {
   const [post, setPost] = useState("RCB domination tonight 🔥 FanVerse AI predicted this momentum shift 3 overs ago 🧠🏏 #APL2026 #FanVerse");
@@ -26,7 +26,7 @@ export default function FanPostGenerator() {
           <h3 className="text-[10px] font-black text-purple-400 uppercase tracking-[0.2em] mb-1">AI Fan Post Generator</h3>
           <p className="text-sm font-black text-white italic uppercase tracking-tighter">Hype the Crowd</p>
         </div>
-        <Twitter size={20} className="text-purple-400" />
+        <Send size={20} className="text-purple-400" />
       </div>
 
       <div className="relative mb-8">

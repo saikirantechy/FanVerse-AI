@@ -131,5 +131,14 @@ export function useMatch() {
     return () => clearInterval(timer);
   }, []);
 
-  return { matchData, momentum, events, activePoll, insight, social, agentDecision, history, flash };
+  const boostEnergy = (amount = 5) => {
+    setSocial(prev => ({
+      ...prev,
+      energy: Math.min(100, prev.energy + amount)
+    }));
+    setAgentDecision(`SocialAgent: Detected fan interaction boost! (+${amount} energy)`);
+  };
+
+  return { matchData, momentum, events, activePoll, insight, social, agentDecision, history, flash, boostEnergy };
 }
+

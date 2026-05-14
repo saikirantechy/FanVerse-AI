@@ -1,6 +1,6 @@
-'use client';
-
 import { motion } from 'framer-motion';
+import GlassCard from './ui/GlassCard';
+import LiveBadge from './ui/LiveBadge';
 
 export default function LiveScoreCard({ matchData }) {
   const { team1, team2, score, overs, target, status } = matchData || {
@@ -12,48 +12,41 @@ export default function LiveScoreCard({ matchData }) {
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="glass-card p-6 relative overflow-hidden"
-    >
-      <div className="absolute top-0 right-0 p-3">
-        <span className="flex h-3 w-3 relative">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-        </span>
+    <GlassCard className="p-8 relative overflow-hidden">
+      <div className="absolute top-6 right-6">
+        <LiveBadge text="LIVE PROJECTION" />
       </div>
 
-      <div className="flex justify-between items-center mb-8">
-        <div className="text-center flex-1">
-          <h2 className="text-3xl font-black italic tracking-tighter mb-2">{team1.name}</h2>
-          <p className="text-4xl font-bold text-cyan-400 neon-text">{team1.score}</p>
+      <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+        <div className="text-center flex-1 group">
+          <h2 className="text-4xl font-black italic tracking-tighter mb-2 text-foreground group-hover:scale-110 transition-transform">{team1.name}</h2>
+          <p className="text-5xl font-black text-accent-primary neon-text">{team1.score}</p>
         </div>
         
-        <div className="px-4 text-gray-500 font-bold text-xl">VS</div>
+        <div className="px-6 py-2 bg-accent-primary/10 border border-accent-primary/20 rounded-2xl text-accent-primary font-black text-xl italic skew-x-[-12deg]">VS</div>
 
-        <div className="text-center flex-1">
-          <h2 className="text-3xl font-black italic tracking-tighter mb-2">{team2.name}</h2>
-          <p className="text-4xl font-bold text-purple-400">{team2.score}</p>
+        <div className="text-center flex-1 group">
+          <h2 className="text-4xl font-black italic tracking-tighter mb-2 text-foreground group-hover:scale-110 transition-transform">{team2.name}</h2>
+          <p className="text-5xl font-black text-accent-secondary">{team2.score}</p>
         </div>
       </div>
 
-      <div className="flex justify-between items-end border-t border-white/10 pt-4">
-        <div>
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Overs</p>
-          <p className="text-xl font-mono font-bold">{overs}</p>
+      <div className="flex flex-col md:flex-row justify-between items-end border-t border-border pt-6 gap-6">
+        <div className="w-full md:w-auto">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted mb-1 font-black">Overs Processed</p>
+          <p className="text-3xl font-mono font-black text-foreground italic">{overs}</p>
         </div>
-        <div className="text-right">
-          <p className="text-sm font-medium text-cyan-400/80 mb-1">{status}</p>
-          <div className="h-1.5 w-48 bg-white/10 rounded-full overflow-hidden">
+        <div className="text-right w-full md:w-auto">
+          <p className="text-sm font-black text-accent-primary mb-3 uppercase tracking-tight italic">"{status}"</p>
+          <div className="h-2 w-full md:w-64 bg-white/5 dark:bg-black/20 rounded-full overflow-hidden border border-border">
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: '70%' }}
-              className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
+              className="h-full bg-gradient-to-r from-accent-primary to-accent-secondary shadow-[0_0_15px_rgba(0,242,255,0.3)]"
             />
           </div>
         </div>
       </div>
-    </motion.div>
+    </GlassCard>
   );
 }

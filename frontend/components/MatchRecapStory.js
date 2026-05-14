@@ -2,12 +2,13 @@ import { motion } from 'framer-motion';
 import { BookOpen, Sparkles, Share2, Download } from 'lucide-react';
 
 export default function MatchRecapStory({ matchData, storyline }) {
-  const recap = storyline || [
+  const recap = Array.isArray(storyline) ? storyline : (storyline ? [storyline] : [
     "The match began with high tension, RCB winning the toss and electing to bat first.",
     "A massive momentum shift at over 17.4 defined the inning, with 26 runs scored in a single over.",
     "Viral energy peaked at 99% during the final delivery, a stunning six that sealed the victory.",
     "AI Analysis: Virat Kohli's tactical positioning in the death overs was the 88% win factor."
-  ];
+  ]);
+
 
   return (
     <div className="glass-card p-10 border-purple-500/20 bg-purple-500/5 relative overflow-hidden">

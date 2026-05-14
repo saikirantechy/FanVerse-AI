@@ -1,58 +1,34 @@
-import { motion } from 'framer-motion';
-import { PlayCircle, History, Calendar, Star } from 'lucide-react';
+import GlassCard from './ui/GlassCard';
+import { Calendar, PlayCircle } from 'lucide-react';
 
 export default function MatchArchive() {
   const matches = [
-    { id: 'h1', teams: 'CSK vs RCB', date: 'May 12, 2024', result: 'RCB won by 27 runs', highlights: 'Emotional final over thriller' },
-    { id: 'h2', teams: 'MI vs KKR', date: 'May 10, 2024', result: 'KKR won by 18 runs', highlights: 'Tactical bowling masterclass' },
-    { id: 'h3', teams: 'GT vs SRH', date: 'May 08, 2024', result: 'GT won by 3 wickets', highlights: 'Last ball finish' },
+    { id: 1, teams: 'MI vs RCB', date: 'May 12, 2026', result: 'RCB won by 4 wickets', highlight: 'Kohli 82*(45)' },
+    { id: 2, teams: 'CSK vs GT', date: 'May 10, 2026', result: 'CSK won by 15 runs', highlight: 'Dhoni last over finish' },
+    { id: 3, teams: 'LSG vs RR', date: 'May 08, 2026', result: 'RR won by 8 wickets', highlight: 'Butler century' },
+    { id: 4, teams: 'KKR vs SRH', date: 'May 05, 2026', result: 'KKR won by 2 runs', highlight: 'Russell 5 wicket haul' },
   ];
 
   return (
-    <div className="glass-card p-8 border-white/5 bg-white/5">
-      <div className="flex justify-between items-center mb-10">
-        <div>
-          <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-1">Historical Match Archive</h3>
-          <p className="text-sm font-black text-white italic uppercase tracking-tighter">AI Match Replay Engine</p>
-        </div>
-        <History size={20} className="text-gray-500" />
-      </div>
-
-      <div className="space-y-6">
-        {matches.map((match, i) => (
-          <motion.div 
-            key={match.id}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="group p-6 bg-white/5 border border-white/5 rounded-3xl hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-between cursor-pointer"
-          >
-            <div className="flex items-center gap-6">
-              <div className="w-12 h-12 bg-black/40 rounded-2xl flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
-                <PlayCircle size={24} />
-              </div>
-              <div>
-                <h4 className="text-sm font-black text-white uppercase tracking-widest mb-1">{match.teams}</h4>
-                <div className="flex items-center gap-3 text-[8px] font-bold text-gray-500 uppercase tracking-widest">
-                  <span className="flex items-center gap-1"><Calendar size={10} /> {match.date}</span>
-                  <span className="text-cyan-500 italic">{match.result}</span>
-                </div>
-              </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
+      {matches.map((match) => (
+        <GlassCard key={match.id} className="p-0 overflow-hidden group">
+          <div className="relative h-40 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center">
+            <PlayCircle size={48} className="text-white opacity-40 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full border border-white/10 text-[8px] font-black uppercase text-white">
+              <Calendar size={10} /> {match.date}
             </div>
-            
-            <div className="text-right hidden md:block">
-              <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">AI Context</p>
-              <p className="text-[10px] font-bold text-white italic">{match.highlights}</p>
+          </div>
+          <div className="p-6">
+            <h3 className="text-xl font-black italic uppercase text-foreground mb-2">{match.teams}</h3>
+            <p className="text-sm font-medium text-accent-primary mb-4">{match.result}</p>
+            <div className="p-3 bg-white/5 rounded-xl border border-white/5">
+              <p className="text-[10px] text-muted uppercase tracking-widest font-black">AI Highlight</p>
+              <p className="text-xs text-gray-300 italic">"{match.highlight}"</p>
             </div>
-          </motion.div>
-        ))}
-      </div>
-
-      <div className="mt-10 pt-8 border-t border-white/5 flex justify-center">
-        <button className="flex items-center gap-3 text-[10px] font-black text-cyan-400 uppercase tracking-widest hover:text-white transition-colors">
-          Search Complete Match History <Star size={12} />
-        </button>
-      </div>
+          </div>
+        </GlassCard>
+      ))}
     </div>
   );
 }
